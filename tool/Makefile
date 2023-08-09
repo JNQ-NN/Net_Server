@@ -12,4 +12,3 @@ all:$(OBJ_PATH)
 	$(CC) -c $< -o $@
 ../obj/%.o:%.cpp
 	$(CC) -c $< -o $@
-
