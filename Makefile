@@ -3,6 +3,7 @@ include config.mk
 ROOT_DIR := $(shell pwd)
 
 all:CHECK_DIR $(SUB_DIRS)
+	@echo "Complie Finsh!"
 
 export ROOT_DIR
  
