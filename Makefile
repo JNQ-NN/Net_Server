@@ -15,7 +15,7 @@ ECHO:                          #遍历子目录
 	@echo $(SUB_DIRS)
 
 run:
-	./bin/Example_Project
+	@./bin/Example_Project
 
 clean:
 	make clean -C $(OBJS_DIRS)

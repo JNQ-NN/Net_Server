@@ -65,6 +65,19 @@ double Json::getDouble(json_t jt,const char* key){
     return (j && j->type==cJSON_Number)?j->valuedouble:0;
 }
 
+void Json::traversalArr(json_t jt,json_cb_t cb){
+    if(jt == nullptr) return;
+    if(jt->type != cJSON_Array){
+        cb(jt);
+    }else{
+        int arrLength = cJSON_GetArraySize(jt);
+        for(int i = 0;i<arrLength;i++){
+            json_t arr_ptr = cJSON_GetArrayItem(jt,i);
+            if(cb(jt)) return ;
+        }
+    }
+}
+
 ostream& operator<<(ostream& cout,Json& json){
     cout<<cJSON_Print(json.json());
     return cout;

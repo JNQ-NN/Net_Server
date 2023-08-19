@@ -16,3 +16,11 @@ $make clean 清理可执行文件和.o文件
 3.链接动态库
 4.编译选项细化 如选择c++版本
 5.将文件打包成deb包
+
+
+#cJson
+使用时，只需使用cJSON的cJSON.cpp cJSON.h 文件即可
+
+#log4cplus
+使用前linux环境应安装log4cplus
+编译时应该链接log4cplus

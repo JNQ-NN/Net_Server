@@ -1,9 +1,24 @@
 #include "log.h"
 
-void logTest(){
-    BasicConfigurator config;
-    config.configure();
+log4cplus::Logger Log::mainLogger_    = log4cplus::Logger::getInstance("mainLog");
+log4cplus::Logger Log::consoleLogger_ = log4cplus::Logger::getInstance("consoleLog");
 
-    Logger logger = Logger::getInstance(LOG4CPLUS_TEXT("main"));
-    LOG4CPLUS_WARN(logger,LOG4CPLUS_TEXT("Hello Log4cplus!"));
+Log::Log(){
+}
+
+log4cplus::Logger& Log::getMainLogger(){
+    return mainLogger_;
+}
+
+log4cplus::Logger& Log::getConsoleLogger(){
+    return consoleLogger_;
+}
+
+void Log::test(){
+    mainLog_TRACE("trace");
+    mainLog_DEBUG("debug");
+    mainLog_INFO("info");
+    mainLog_WARN("warn");
+    mainLog_ERROR("error");
+    mainLog_FATAL("fatal");
 }
