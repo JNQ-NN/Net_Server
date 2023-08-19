@@ -12,4 +12,6 @@ int main(){
     log4cplus::Initializer initializer;
     log4cplus::PropertyConfigurator::doConfigure(log4cplus_Conf_File);
     Log log;
+    Log::test();
+    mainLog_INFO("main log test");
 }

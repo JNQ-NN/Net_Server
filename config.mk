@@ -5,5 +5,6 @@ SUB_DIRS+=obj
 OBJS_DIRS=obj                #存放生成的中间.o文件目录
 BIN_DIR=bin                  #存放可执行文件的目录
 INCLUDE_DIR=
+LOG_DIRS=log                 #存放日志文件
 #complier
 CC=g++                       #g++编译器

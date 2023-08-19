@@ -1,0 +1,5 @@
+08/19/23 16:42:52 [INFO ][log.cpp:20] [test] info
+08/19/23 16:42:52 [WARN ][log.cpp:21] [test] warn
+08/19/23 16:42:52 [ERROR][log.cpp:22] [test] error
+08/19/23 16:42:52 [FATAL][log.cpp:23] [test] fatal
+08/19/23 16:42:52 [INFO ][../main.cpp:16] [main] main log test

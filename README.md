@@ -1,8 +1,8 @@
-
-
 bin文件夹，用于存放可执行文件
 obj文件夹，用于存放Makefile生成的中间文件
 config.mk Makefile的全局配置文件
+net文件夹，用于提供网络服务
+tool文件夹，用于基本工具
 
 #Makefile
 $make 编译成可执行文件
