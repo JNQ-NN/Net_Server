@@ -24,3 +24,8 @@ $make clean 清理可执行文件和.o文件
 #log4cplus
 使用前linux环境应安装log4cplus
 编译时应该链接log4cplus
+
+#boost::asio
+使用时，需要安装
+安装asio方法 $sudo apt install libasio-dev
+安装boost方法

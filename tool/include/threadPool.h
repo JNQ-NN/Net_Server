@@ -84,15 +84,15 @@ public:
 
     
 private:  
-    vector<thread> threadPool_;          //存储线程的容器
+    vector<thread> threadPool_;            //存储线程的容器
     unsigned short maxThreads_;            //最大线程数量
     atomic<unsigned short> curThreads_{0}; //当前线程数量
     atomic<bool> run_{true};               //线程池运行状态
     queue<Task> tasks_;                    //请求队列 
     unsigned int maxTasks_;                //请求队列的最大请求数量
     atomic<unsigned int> curTasks_;        //当前请求队列的数量
-    mutex mutex_;                     //用于条件锁
-    condition_variable cond;               //条件锁，用于阻塞闲置线程
+    mutex mutex_;                          //用于添加线程&添加添加任务
+    condition_variable cond;               //用于阻塞闲置线程
 
     /*
      *@brief 获得CPU的最大线程数
@@ -111,7 +111,3 @@ private:
     }
 };
 
-//TODO:
-//1.创建线程池
-//2.run函数
-//3.
