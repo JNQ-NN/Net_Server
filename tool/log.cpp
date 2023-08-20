@@ -4,6 +4,8 @@ log4cplus::Logger Log::mainLogger_    = log4cplus::Logger::getInstance("mainLog"
 log4cplus::Logger Log::consoleLogger_ = log4cplus::Logger::getInstance("consoleLog");
 
 Log::Log(){
+    mainLog_INFO("#############");
+    mainLog_INFO("main log init");
 }
 
 log4cplus::Logger& Log::getMainLogger(){

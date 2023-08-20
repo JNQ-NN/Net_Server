@@ -9,16 +9,13 @@ using namespace std;
 #include "net_client/include/clientEchoSync.h"
 #include "net_server/include/serverEchoAsync.h"
 
-
-
+#include <mysql/mysql.h>
 int main(int args,char** argv){
     /* log4cplus config*/
     log4cplus::Initializer initializer;
     log4cplus::PropertyConfigurator::doConfigure(log4cplus_Conf_File);
     Log log;
-    Log::test();
-    mainLog_INFO("main log test");
-    
+
     if(args>1 && !strcmp(argv[1],"server")){
         cout<<"server"<<endl;
         serverEcho();
@@ -26,5 +23,4 @@ int main(int args,char** argv){
         cout<<"client"<<endl;
         clientEcho();
     }
-
 }

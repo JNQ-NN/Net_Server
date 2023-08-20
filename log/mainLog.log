@@ -158,3 +158,66 @@
 08/20/23 21:35:52 [ERROR][log.cpp:22] [test] error
 08/20/23 21:35:52 [FATAL][log.cpp:23] [test] fatal
 08/20/23 21:35:52 [INFO ][../main.cpp:20] [main] main log test
+08/20/23 21:56:47 [INFO ][log.cpp:20] [test] info
+08/20/23 21:56:47 [WARN ][log.cpp:21] [test] warn
+08/20/23 21:56:47 [ERROR][log.cpp:22] [test] error
+08/20/23 21:56:47 [FATAL][log.cpp:23] [test] fatal
+08/20/23 21:56:47 [INFO ][../main.cpp:20] [main] main log test
+08/20/23 21:57:02 [INFO ][log.cpp:7] [Log] #############
+08/20/23 21:57:02 [INFO ][log.cpp:8] [Log] main log init
+08/20/23 21:57:41 [INFO ][log.cpp:7] [Log] #############
+08/20/23 21:57:41 [INFO ][log.cpp:8] [Log] main log init
+08/20/23 21:57:47 [INFO ][log.cpp:7] [Log] #############
+08/20/23 21:57:47 [INFO ][log.cpp:8] [Log] main log init
+08/20/23 22:01:04 [INFO ][log.cpp:7] [Log] #############
+08/20/23 22:01:04 [INFO ][log.cpp:8] [Log] main log init
+08/20/23 22:01:11 [INFO ][log.cpp:7] [Log] #############
+08/20/23 22:01:11 [INFO ][log.cpp:8] [Log] main log init
+08/20/23 22:01:24 [INFO ][log.cpp:7] [Log] #############
+08/20/23 22:01:24 [INFO ][log.cpp:8] [Log] main log init
+08/20/23 22:01:50 [INFO ][log.cpp:7] [Log] #############
+08/20/23 22:01:50 [INFO ][log.cpp:8] [Log] main log init
+08/20/23 22:02:12 [INFO ][log.cpp:7] [Log] #############
+08/20/23 22:02:12 [INFO ][log.cpp:8] [Log] main log init
+08/20/23 22:02:14 [INFO ][log.cpp:7] [Log] #############
+08/20/23 22:02:14 [INFO ][log.cpp:8] [Log] main log init
+08/20/23 22:02:19 [INFO ][log.cpp:7] [Log] #############
+08/20/23 22:02:19 [INFO ][log.cpp:8] [Log] main log init
+08/20/23 22:02:26 [INFO ][log.cpp:7] [Log] #############
+08/20/23 22:02:26 [INFO ][log.cpp:8] [Log] main log init
+08/20/23 22:02:46 [INFO ][log.cpp:7] [Log] #############
+08/20/23 22:02:46 [INFO ][log.cpp:8] [Log] main log init
+08/20/23 22:02:54 [INFO ][log.cpp:7] [Log] #############
+08/20/23 22:02:54 [INFO ][log.cpp:8] [Log] main log init
+08/20/23 22:02:56 [INFO ][log.cpp:7] [Log] #############
+08/20/23 22:02:56 [INFO ][log.cpp:8] [Log] main log init
+08/20/23 22:03:00 [INFO ][log.cpp:7] [Log] #############
+08/20/23 22:03:00 [INFO ][log.cpp:8] [Log] main log init
+08/20/23 22:03:05 [INFO ][log.cpp:7] [Log] #############
+08/20/23 22:03:05 [INFO ][log.cpp:8] [Log] main log init
+08/20/23 22:03:11 [INFO ][log.cpp:7] [Log] #############
+08/20/23 22:03:11 [INFO ][log.cpp:8] [Log] main log init
+08/20/23 22:03:15 [INFO ][log.cpp:7] [Log] #############
+08/20/23 22:03:15 [INFO ][log.cpp:8] [Log] main log init
+08/20/23 22:03:35 [INFO ][log.cpp:7] [Log] #############
+08/20/23 22:03:35 [INFO ][log.cpp:8] [Log] main log init
+08/20/23 22:03:46 [INFO ][log.cpp:7] [Log] #############
+08/20/23 22:03:46 [INFO ][log.cpp:8] [Log] main log init
+08/20/23 22:04:06 [INFO ][log.cpp:7] [Log] #############
+08/20/23 22:04:06 [INFO ][log.cpp:8] [Log] main log init
+08/20/23 22:04:14 [INFO ][log.cpp:7] [Log] #############
+08/20/23 22:04:14 [INFO ][log.cpp:8] [Log] main log init
+08/20/23 22:04:19 [INFO ][log.cpp:7] [Log] #############
+08/20/23 22:04:19 [INFO ][log.cpp:8] [Log] main log init
+08/20/23 22:06:05 [INFO ][log.cpp:7] [Log] #############
+08/20/23 22:06:05 [INFO ][log.cpp:8] [Log] main log init
+08/20/23 22:06:15 [INFO ][log.cpp:7] [Log] #############
+08/20/23 22:06:15 [INFO ][log.cpp:8] [Log] main log init
+08/20/23 22:07:03 [INFO ][log.cpp:7] [Log] #############
+08/20/23 22:07:03 [INFO ][log.cpp:8] [Log] main log init
+08/20/23 22:07:17 [INFO ][log.cpp:7] [Log] #############
+08/20/23 22:07:17 [INFO ][log.cpp:8] [Log] main log init
+08/20/23 22:07:25 [INFO ][log.cpp:7] [Log] #############
+08/20/23 22:07:25 [INFO ][log.cpp:8] [Log] main log init
+08/20/23 22:07:57 [INFO ][log.cpp:7] [Log] #############
+08/20/23 22:07:57 [INFO ][log.cpp:8] [Log] main log init
