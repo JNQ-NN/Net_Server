@@ -18,6 +18,11 @@ ECHO:                          #遍历子目录
 run:
 	@./bin/Example_Project
 
+runServer:
+	@./bin/Example_Project server
+runClient:
+	@./bin/Example_Project client
+
 clean:
 	make clean -C $(OBJS_DIRS)
 	rm -rf $(BIN_DIR) 
