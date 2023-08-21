@@ -5,3 +5,12 @@
 
 问题：在.h文件中声明并定义静态成员，出现multiple defined问题
 解决：在.h文件中声明静态成员，在.cpp文件中定义静态成员
+
+问题：sprintf造成segment default
+解决：sprintf(char arr[size], ... ) 可以使用字符数组指定内存大小
+解决：snprintf 指定内存大小
+
+问题：使用char*造成segment default
+解决：指针使用时建议初始化，置为nullptr
+
+问题：函数缺少返回值造成segment default

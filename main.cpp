@@ -10,6 +10,9 @@ using namespace std;
 #include "net_server/include/serverEchoAsync.h"
 
 #include "tool/mysql_operation.h"
+#include "net/user.h"
+
+
 
 int main(int args,char** argv){
     /* log4cplus config*/
@@ -25,7 +28,7 @@ int main(int args,char** argv){
         clientEcho();
     }
 
-    Mysql m;
-    m.mysqlConnection();
-    m.mysqlQuery("select * from test;");
+    User u;
+    
+
 }

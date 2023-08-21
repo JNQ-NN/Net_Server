@@ -2,13 +2,15 @@
 #define __MYSQL_OPERATION__
 #include <iostream>
 #include <mysql/mysql.h>
+#include <vector>
 using namespace std;
+
+typedef MYSQL* mysql_t;
 
 /*
  *@breif Mysql数据库
 */
-class Mysql{
-    typedef MYSQL* mysql_t;
+class Mysql{ 
 public:
     Mysql();
     ~Mysql();
@@ -16,9 +18,13 @@ public:
     bool mysqlConnection(const char* hostName="localhost",
                          const char* userName="root",const char* userPwd="123456789",
                          const char* userDatabase="netDatabase",unsigned int port=3306);
-    string mysqlQuery(string queryCmd);
+    MYSQL_RES* mysqlQuery(const char* queryCmd);
+    
 private:
     mysql_t mysql_;
-    MYSQL_RES* mysqlRes_;
+    MYSQL_RES* res_ = nullptr;
+    void init();
+    bool isConnection();
 };
+
 #endif
