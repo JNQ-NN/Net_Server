@@ -9,7 +9,8 @@ using namespace std;
 #include "net_client/include/clientEchoSync.h"
 #include "net_server/include/serverEchoAsync.h"
 
-#include <mysql/mysql.h>
+#include "tool/mysql_operation.h"
+
 int main(int args,char** argv){
     /* log4cplus config*/
     log4cplus::Initializer initializer;
@@ -23,4 +24,8 @@ int main(int args,char** argv){
         cout<<"client"<<endl;
         clientEcho();
     }
+
+    Mysql m;
+    m.mysqlConnection();
+    m.mysqlQuery("select * from test;");
 }
