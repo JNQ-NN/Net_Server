@@ -10,6 +10,6 @@ OBJ_PATH=$(foreach obj_name,$(OBJ),../obj/$(obj_name))
 all:$(OBJ_PATH)
 
 ../obj/%.o:%.c
-	$(CC) -c $< -o $@ 
+	$(CC) $(FLAG) -c $< -o $@ 
 ../obj/%.o:%.cpp
-	$(CC) -c $< -o $@ 
+	$(CC) $(FLAG) -c $< -o $@ 

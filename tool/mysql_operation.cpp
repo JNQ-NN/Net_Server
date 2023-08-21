@@ -27,6 +27,7 @@ bool Mysql::mysqlConnection(const char* hostName,
     
     if(mysql_ == nullptr){
         cout<<"connection mysql nullplr"<<endl;
+        return false;
     }
     if(mysql_real_connect(mysql_,hostName,userName,userPwd,userDatabase,port,NULL,0)){//返回false则连接失败，返回true则连接成功
         //中间分别是主机，用户名，密码，数据库名，端口号（可以写默认0或者3306等）
@@ -43,10 +44,12 @@ bool Mysql::mysqlConnection(const char* hostName,
  *@brief 数据库查询
 */
 MYSQL_RES* Mysql::mysqlQuery(const char* queryCmd){
-    cout<<queryCmd<<endl;
     mysql_query(mysql_,queryCmd);
     res_ = mysql_store_result(mysql_);
-    cout<<"1*1"<<endl;
+    if(mysql_errno(mysql_)!=0){
+        cout<<"错误编码:"<<mysql_errno(mysql_)<<endl;
+        cout<<"错误信息:"<<mysql_error(mysql_)<<endl;
+    }
     return res_;
 }
 
