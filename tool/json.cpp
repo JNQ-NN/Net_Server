@@ -123,7 +123,7 @@ void Json::appendDouble(json_t jt,const char* key,double value){
 }
 
 void Json::appendArr(json_t jt,const char* key,vector<int>& arr){
-    cJSON* tempArr = nullptr;
+    json_t tempArr = nullptr;
     tempArr = cJSON_CreateArray();
     for(auto &a:arr){
         cJSON_AddItemToArray(tempArr,cJSON_CreateNumber(a));
@@ -132,7 +132,7 @@ void Json::appendArr(json_t jt,const char* key,vector<int>& arr){
 }
 
 void Json::appendArr(json_t jt,const char* key,vector<double>& arr){
-    cJSON* tempArr = nullptr;
+    json_t tempArr = nullptr;
     tempArr = cJSON_CreateArray();
     for(auto &a:arr){
         cJSON_AddItemToArray(tempArr,cJSON_CreateNumber(a));
@@ -141,7 +141,7 @@ void Json::appendArr(json_t jt,const char* key,vector<double>& arr){
 }
 
 void Json::appendArr(json_t jt,const char* key,vector<const char*>& arr){
-    cJSON* tempArr = nullptr;
+    json_t tempArr = nullptr;
     tempArr = cJSON_CreateArray();
     for(auto &a:arr){
         cJSON_AddItemToArray(tempArr,cJSON_CreateString(a));
@@ -158,20 +158,96 @@ void Json::modifyInt(const char* key,int value){
 }
 
 void Json::modifyDouble(const char* key,double value){
-    modifyInt(json_,key,value);
+    modifyDouble(json_,key,value);
 }
 
+void Json::modifyArr(const char* key,vector<const char*> arr){
+    modifyArr(json_,key,arr);
+}
+
+void Json::modifyArr(const char* key,vector<int> arr){
+    modifyArr(json_,key,arr);
+}
+
+void Json::modifyArr(const char* key,vector<double> arr){
+    modifyArr(json_,key,arr);
+}
+
+/*
+ *覆盖式修改
+*/
 void Json::modifyCharPtr(json_t jt,const char* key,const char* value){
-    cJSON_ReplaceItemInObjectCaseSensitive(jt,key,cJSON_CreateString(value));
+    json_t j = json(jt,key);
+    if(j && j->type==cJSON_String){
+        cJSON_ReplaceItemInObjectCaseSensitive(jt,key,cJSON_CreateString(value));
+    }
 }
 
+/*
+ *覆盖式修改
+*/
 void Json::modifyInt(json_t jt,const char* key,int value){
-    cJSON_ReplaceItemInObject(jt,key,cJSON_CreateNumber(value));
+    json_t j = json(jt,key);
+    if(j && j->type==cJSON_Number){
+        cJSON_ReplaceItemInObject(jt,key,cJSON_CreateNumber(value));
+    }
 }
 
+/*
+ *覆盖式修改
+*/
 void Json::modifyDouble(json_t jt,const char* key,double value){
-    cJSON_ReplaceItemInObject(jt,key,cJSON_CreateNumber(value));
+    json_t j = json(jt,key);
+    if(j && j->type==cJSON_Number){
+        cJSON_ReplaceItemInObject(jt,key,cJSON_CreateNumber(value));
+    }
 }
+
+/*
+ *覆盖式修改
+*/
+void Json::modifyArr(json_t jt,const char* key,vector<const char*> arr){
+    json_t j = json(jt,key);
+    if(j && j->type==cJSON_Array){
+        json_t tempArr = nullptr;
+        tempArr = cJSON_CreateArray();
+        for(auto& a:arr){
+           cJSON_AddItemToArray(tempArr,cJSON_CreateString(a));
+        }
+        cJSON_ReplaceItemInObject(jt,key,tempArr);  
+    }
+}
+
+/*
+ *覆盖式修改
+*/
+void Json::modifyArr(json_t jt,const char* key,vector<int> arr){
+    json_t j = json(jt,key);
+    if(j && j->type==cJSON_Array){
+        json_t tempArr = nullptr;
+        tempArr = cJSON_CreateArray();
+        for(auto& a:arr){
+           cJSON_AddItemToArray(tempArr,cJSON_CreateNumber(a));
+        }
+        cJSON_ReplaceItemInObject(jt,key,tempArr);  
+    }
+}
+
+/*
+ *覆盖式修改
+*/
+void Json::modifyArr(json_t jt,const char* key,vector<double> arr){
+    json_t j = json(jt,key);
+    if(j && j->type==cJSON_Array){
+        json_t tempArr = nullptr;
+        tempArr = cJSON_CreateArray();
+        for(auto& a:arr){
+           cJSON_AddItemToArray(tempArr,cJSON_CreateNumber(a));
+        }
+        cJSON_ReplaceItemInObject(jt,key,tempArr);  
+    }
+}
+
 
 const char* Json::deserialization(Json& j){
     return cJSON_Print(j.json());
@@ -183,15 +259,21 @@ void Json::testAppend(){
     j.appendInt("NumInt",666);
     j.appendDouble("NumDouble",6.6);
     vector<int> v{1,2,3};
-    j.appendArr("Arr",v);
+    j.appendArr("Arr1",v);
     vector<double> vv{1.1,2.2,3.3};
-    j.appendArr("Arr",vv);
+    j.appendArr("Arr2",vv);
     vector<const char*> vvv{"a1","a2","a3"};
-    j.appendArr("Arr",vvv);
+    j.appendArr("Arr3",vvv);
     j.show();
     j.modifyCharPtr("str","charptr");
     j.modifyInt("NumInt",888);
     j.modifyDouble("NumDouble",6.6);
+    vector<int> vi{10,20,30,40,50};
+    vector<double> vvi{11.1,22.2,33.3,44.4,55.5};
+    vector<const char*> vvvi{"aa1","aa2","aa3","aa4","aa5"};
+    j.modifyArr("Arr1",vi);
+    j.modifyArr("Arr2",vvi);
+    j.modifyArr("Arr3",vvvi);
     j.show();
 }
 
