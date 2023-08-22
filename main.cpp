@@ -9,9 +9,8 @@ using namespace std;
 #include "net_client/include/clientEchoSync.h"
 #include "net_server/include/serverEchoAsync.h"
 
-#include "tool/mysql_operation.h"
-#include "net/user.h"
 
+#include "tool/tool.h"
 
 
 int main(int args,char** argv){
@@ -27,9 +26,4 @@ int main(int args,char** argv){
         cout<<"client"<<endl;
         clientEcho();
     }
-    cout<<"1"<<endl;
-   
-    //User u;
-    Json::testAppend();
-
 }
