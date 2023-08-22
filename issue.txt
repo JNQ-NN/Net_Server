@@ -1,4 +1,4 @@
-#问题收集
+#问题赘述
 
 问题：vscode代码在服务器上，没有代码提示
 解决：vscode需要将c/c++插件装在服务器上,而不是本地
@@ -17,3 +17,9 @@
 
 问题:cJSON未通过cJSON_CreateObject进行初始化,会出现core dump
 解决:建议先cJSON* json = nullptr,再json = cJSON_CreateObject();
+
+问题：error: no type named ‘type’ in ‘struct std::result_of<void (Server::* const volatile&(Server* const volatile&, const std::error_code&, const volatile std::shared_ptr<Session>&))(std::error_code&, std::shared_ptr<Session>)>’
+解决：std::bind使用时，注意变量类型，否则会报类似错误
+
+问题：在线程进行socket accpet时，没有发生阻塞
+解决：考虑看io_context ioc; 是否调用ioc.run();

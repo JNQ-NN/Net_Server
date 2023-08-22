@@ -52,15 +52,15 @@ public:
     static void modifyCharPtr(json_t jt,const char* key,const char* value);
     static void modifyInt(json_t jt,const char* key,int value);
     static void modifyDouble(json_t jt,const char* key,double value);
-    static void modifyArr(json_t jt,const char* key,vector<const char*> arr);
-    static void modifyArr(json_t jt,const char* key,vector<int> arr);
-    static void modifyArr(json_t jt,const char* key,vector<double> arr);
+    static void modifyArr(json_t jt,const char* key,vector<const char*>& arr);
+    static void modifyArr(json_t jt,const char* key,vector<int>& arr);
+    static void modifyArr(json_t jt,const char* key,vector<double>& arr);
     
     /*数据序列化&反序列化*/
     //序列化通过Json构造函数即可
     static const char* deserialization(Json& j);
 
-    static void testAppend();
+    static void test();
 private:
     json_t json_;
 

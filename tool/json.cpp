@@ -206,7 +206,7 @@ void Json::modifyDouble(json_t jt,const char* key,double value){
 /*
  *覆盖式修改
 */
-void Json::modifyArr(json_t jt,const char* key,vector<const char*> arr){
+void Json::modifyArr(json_t jt,const char* key,vector<const char*>& arr){
     json_t j = json(jt,key);
     if(j && j->type==cJSON_Array){
         json_t tempArr = nullptr;
@@ -221,7 +221,7 @@ void Json::modifyArr(json_t jt,const char* key,vector<const char*> arr){
 /*
  *覆盖式修改
 */
-void Json::modifyArr(json_t jt,const char* key,vector<int> arr){
+void Json::modifyArr(json_t jt,const char* key,vector<int>& arr){
     json_t j = json(jt,key);
     if(j && j->type==cJSON_Array){
         json_t tempArr = nullptr;
@@ -236,7 +236,7 @@ void Json::modifyArr(json_t jt,const char* key,vector<int> arr){
 /*
  *覆盖式修改
 */
-void Json::modifyArr(json_t jt,const char* key,vector<double> arr){
+void Json::modifyArr(json_t jt,const char* key,vector<double>& arr){
     json_t j = json(jt,key);
     if(j && j->type==cJSON_Array){
         json_t tempArr = nullptr;
@@ -253,7 +253,7 @@ const char* Json::deserialization(Json& j){
     return cJSON_Print(j.json());
 }
 
-void Json::testAppend(){
+void Json::test(){
     Json j;
     j.appendCharPtr("str","string");
     j.appendInt("NumInt",666);
