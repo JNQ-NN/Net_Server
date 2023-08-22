@@ -9,6 +9,7 @@ typedef cJSON* json_t;
 typedef function<bool(json_t)> json_cb_t;
 class Json{
 public:
+    Json();
     explicit Json(json_t jt);
     explicit Json(const char* jc);
     ~Json();
@@ -25,14 +26,38 @@ public:
     static const char* getCharPtr(json_t jt,const char* key);
     static int getInt(json_t jt,const char* key);
     static double getDouble(json_t jt,const char* key);
-
     static void traversalArr(json_t jt,json_cb_t cb);
-    /*数据增添*/
-    
-    /*数据修改*/
 
+    /*数据增添*/
+    void appendCharPtr(const char* key,const char* value);
+    void appendInt(const char* key,int value);
+    void appendDouble(const char* key,double value);
+    void appendArr(const char* key,vector<int>& arr);
+    void appendArr(const char* key,vector<double>& arr);
+    void appendArr(const char* key,vector<const char*>& arr);
+    static void appendCharPtr(json_t jt,const char* key,const char* value);
+    static void appendInt(json_t jt,const char* key,int value);
+    static void appendDouble(json_t jt,const char* key,double value);
+    static void appendArr(json_t jt,const char* key,vector<int>& arr);
+    static void appendArr(json_t jt,const char* key,vector<double>& arr);
+    static void appendArr(json_t jt,const char* key,vector<const char*>& arr);
+
+    /*数据修改*/
+    void modifyCharPtr(const char* key,const char* value);
+    void modifyInt(const char* key,int value);
+    void modifyDouble(const char* key,double value);
+    static void modifyCharPtr(json_t jt,const char* key,const char* value);
+    static void modifyInt(json_t jt,const char* key,int value);
+    static void modifyDouble(json_t jt,const char* key,double value);
+    
+    /*数据序列化&反序列化*/
+    //序列化通过Json构造函数即可
+    static const char* deserialization(Json& j);
+
+    static void testAppend();
 private:
     json_t json_;
+
 };
 
 ostream& operator<<(ostream& cout,Json& json);

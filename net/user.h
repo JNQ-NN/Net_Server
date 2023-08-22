@@ -7,6 +7,9 @@
 using namespace std;
 #include "../tool/mysql_operation.h"
 
+#define USER_COMMON = 1
+#define USER_ADMIN  = 2
+#define USER_SUPER  = 3
 class User{
 public:
     User();
@@ -28,11 +31,15 @@ private:
     //bool connectionMysql();
 };
 
-class CommonUser:public User{
+class UerCommon:public User{
 
 };
 
-class AdminUser:public User{
+class UserAdmin:public User{
+
+};
+
+class UserSuper:public User{
 
 };
 

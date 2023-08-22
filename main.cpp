@@ -27,8 +27,9 @@ int main(int args,char** argv){
         cout<<"client"<<endl;
         clientEcho();
     }
-
-    User u;
-    
+    cout<<"1"<<endl;
+   
+    //User u;
+    Json::testAppend();
 
 }

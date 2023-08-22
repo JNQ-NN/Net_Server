@@ -25,6 +25,7 @@ private:
     MYSQL_RES* res_ = nullptr;
     void init();
     bool isConnection();
+    void freeRes();
 };
 
 #endif

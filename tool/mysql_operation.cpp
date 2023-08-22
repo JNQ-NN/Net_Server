@@ -44,6 +44,7 @@ bool Mysql::mysqlConnection(const char* hostName,
  *@brief 数据库查询
 */
 MYSQL_RES* Mysql::mysqlQuery(const char* queryCmd){
+    freeRes();
     mysql_query(mysql_,queryCmd);
     res_ = mysql_store_result(mysql_);
     if(mysql_errno(mysql_)!=0){
@@ -57,7 +58,7 @@ void Mysql::init(){
     mysql_init(mysql_);
 }
 
-/**
+/*
  *@breif 判断数据库是否连接
 */
 bool Mysql::isConnection(){
@@ -65,5 +66,14 @@ bool Mysql::isConnection(){
         return (0==mysql_ping(mysql_));
     }
     return false;
- }
+}
 
+/*
+ * MYSQL_RES* res_ 初始化,每次查询时调用
+*/
+void Mysql::freeRes(){
+    if(res_!=nullptr){
+        mysql_free_result(res_);
+        res_ = nullptr;
+    }
+}
