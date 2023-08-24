@@ -36,3 +36,6 @@
 
 问题:发送端关闭时,接收端asio::error_code error会有反馈
 解决:error.message()为End of file /  error.value()为2 对此应当处理
+
+问题：multiple definition of 问题
+解决：不应将全局变量以及全局方法定义放在头文件

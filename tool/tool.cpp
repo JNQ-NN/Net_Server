@@ -24,3 +24,10 @@ int TOOL::cmd(const char* command,char* res,size_t size){
     }
     return -1;
 }
+
+/*
+* @brief 字符串转int，不做校验
+*/
+size_t TOOL_Str::strToNum(const char* str){
+    return atoi(str);
+}

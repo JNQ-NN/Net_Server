@@ -1,5 +1,6 @@
-#ifndef __TOOL_H__
-#define __TOOL_H__
+#ifndef __TOOL__H__
+#define __TOOL__H__
+
 #include <iostream>
 #include "string.h"
 using namespace std;
@@ -9,7 +10,7 @@ namespace TOOL{
 }
 
 namespace TOOL_Str{
-    
+    size_t strToNum(const char* str);
 }
 
 #endif

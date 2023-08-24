@@ -11,11 +11,9 @@ using namespace std;
 #include "net_server/include/serverEchoAsync.h"
 
 void test(){
-    int t = 0xFF;
-    unsigned int tt = t;
-    cout<<t<<endl;
-    cout<<tt<<endl;
-    
+    char arr[10] = "123456";
+    int res = TOOL_Str::strToNum(arr);
+    cout<<res<<endl;
 }
 
 int main(int args,char** argv){

@@ -6,27 +6,22 @@ using namespace std;
 #include "../tool/json.h"
 
 struct Msg{
-    int mod;                //     
-    char usrName[10];       //发送源用户名称
-    union{
-        char toName[10];    //发送目的用户名称
-        char groupName[10]; //发送目的分组名称
-        char ipAddress[16]; //发送目的用户ip
-    };
-    char msg[0xFF];
+    size_t msgHeadLen_;
 };
 
 
 class MsgNode{
 public:
+    MsgNode();
     MsgNode(size_t msgMaxLen);
     MsgNode(const char* msg,unsigned int msgMaxLen);
     MsgNode(Json* jt);
 
     char* getMsg();
+    void resize(size_t newMaxSize);
     void msgClear();
     size_t getMsgMaxLen();
-    size_t getMsgCurLen(); 
+    size_t getMsgCurLen();
 
 private:
     char* msg_;
