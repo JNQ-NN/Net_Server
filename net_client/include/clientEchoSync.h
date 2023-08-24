@@ -21,21 +21,21 @@ void clientEcho(){
         //3.处理数据
         //char数组版本
         char buff[20];
-        //cin >> buff;        //cin遇到空格、回车则停止
-        cout<<"请输入:";
-        cin.get(buff,20);   //cin.get()遇到回车则停止
-		sock.send(asio::buffer(buff));
-        this_thread::sleep_for(chrono::seconds(1));
-        cout<<"请输入:";
-        memset(buff, 0, 20);
-        cin >> buff;        //cin遇到空格、回车则停止
-        //cin.get(buff,20);   //cin.get()遇到回车则停止
-		sock.send(asio::buffer(buff));
+        // //cin >> buff;        //cin遇到空格、回车则停止
+        // cout<<"请输入:";
+        // cin.get(buff,20);   //cin.get()遇到回车则停止
+		// sock.send(asio::buffer(buff));
+        // this_thread::sleep_for(chrono::seconds(1));
+        // cout<<"请输入:";
+        // memset(buff, 0, 20);
+        // cin >> buff;        //cin遇到空格、回车则停止
+        // //cin.get(buff,20);   //cin.get()遇到回车则停止
+		// sock.send(asio::buffer(buff));
 
-		// memset(buff, 0, 20);
-		// sock.receive(asio::buffer(buff));
-		// cout <<buff<<endl;
-        // sock.close();
+		memset(buff, 0, 20);
+		sock.receive(asio::buffer(buff));
+		cout<<"msg:"<<buff<<endl;
+        sock.close();
         //TODO: string版本
     }
     catch (std::exception& _e) {

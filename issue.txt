@@ -33,3 +33,6 @@
 
 问题:发送一次数据||接受一次数据,不能继续接收数据?
 解决:依次排查发送端和接收端,似乎是发送端IO问题
+
+问题:发送端关闭时,接收端asio::error_code error会有反馈
+解决:error.message()为End of file /  error.value()为2 对此应当处理

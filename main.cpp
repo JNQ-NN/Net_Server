@@ -25,11 +25,11 @@ int main(int args,char** argv){
     Log log;
 
     if(args>1 && !strcmp(argv[1],"server")){
-        // asio::io_context ioc;
-        // Server server(ioc,6666);
-        // server.start_accept();
-        // ioc.run();
-        serverEcho();
+        asio::io_context ioc;
+        Server server(ioc,6666);
+        server.start_accept();
+        ioc.run();
+        //serverEcho();
     }else if(args>1 && !strcmp(argv[1],"client")){
         cout<<"client"<<endl;
         clientEcho();

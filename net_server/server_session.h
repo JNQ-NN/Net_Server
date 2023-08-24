@@ -2,6 +2,7 @@
 #define __SERVER_SESSION_H__
 #include "iostream"
 #include <asio.hpp>
+#include <queue>
 using namespace std;
 #include "../net/msg.h"
 
@@ -14,12 +15,15 @@ public:
     socket_t getSocket();
     void start_receive();
     void handle_receive(const asio::error_code& error);
-    void send();
+    void handle_send(const asio::error_code& error);
+    void send(char* msg,size_t msgMaxLen);
     ~Session();
     
 private:
     socket_t socket_;
     shared_ptr<MsgNode> msgNodeRecv_;
+    queue<shared_ptr<MsgNode>> msgNodeSendQueue_;
+    mutex mxSendQueue_; //用于保护发送队列的线程安全
 };
 
 #endif
