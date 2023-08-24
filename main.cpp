@@ -6,9 +6,10 @@ using namespace std;
 #include "tool/lock.h"
 #include "tool/tool.h"
 #include "net_server/server.h"
+#include "net_client/client.h"
 #include "tool/include/threadPool.h"
-#include "net_client/include/clientEchoSync.h"
-#include "net_server/include/serverEchoAsync.h"
+// #include "net_client/include/clientEchoSync.h"
+// #include "net_server/include/serverEchoAsync.h"
 
 void test(){
     char arr[10] = "123456";
@@ -29,8 +30,11 @@ int main(int args,char** argv){
         ioc.run();
         //serverEcho();
     }else if(args>1 && !strcmp(argv[1],"client")){
-        cout<<"client"<<endl;
-        clientEcho();
+        // cout<<"client"<<endl;
+        // clientEcho();
+        asio::io_context ioc;
+        Client client(ioc,"111.231.12.131",6666);
+        ioc.run();
     }
     test();
 }

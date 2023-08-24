@@ -7,13 +7,10 @@ using namespace std;
 #include "../net/msg.h"
 #include "../tool/tool.h"
 
-#define MSGNODE_LEN 100
-#define MSGHEAD_LEN 10  //数据包头的长度 理论最大传输长度9999999999
-
-typedef asio::ip::tcp::socket* socket_t;
-class Session:public std::enable_shared_from_this<Session>{
+class SSession:public std::enable_shared_from_this<SSession>{
+    typedef asio::ip::tcp::socket* socket_t;
 public:
-    Session(asio::io_context& ioc);
+    SSession(asio::io_context& ioc);
     socket_t getSocket();
     void start_receive();
     void handle_receive(const asio::error_code& error);
@@ -22,7 +19,7 @@ public:
     
     void handle_send(const asio::error_code& error);
     void send(char* msg,size_t msgMaxLen);
-    ~Session();
+    ~SSession();
     
 private:
     socket_t socket_;

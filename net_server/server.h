@@ -10,9 +10,9 @@ using namespace std;
 */
 class Server{
 public:
-    Server(asio::io_context& ioc,int port);
+    Server(asio::io_context& ioc,unsigned short port);
     void start_accept();
-    void handle_accept(const asio::error_code& error,std::shared_ptr<Session> session);
+    void handle_accept(const asio::error_code& error,std::shared_ptr<SSession> SSession);
 
 private:
     asio::io_context& ioc_; //io_context io_service 两者皆可

@@ -5,9 +5,16 @@
 using namespace std;
 #include "../tool/json.h"
 
-struct Msg{
-    size_t msgHeadLen_;
-};
+#define MSGHEAD_LEN 10 //消息头长度 理论最大传输长度9999999999
+
+// class MsgNode;
+
+// struct Msg{
+//     size_t msgHeadLen_;  //消息头 保存消息体的长度
+//     char* msgHead;
+//     size_t msgNodeLent_; //消息体 保存消息
+//     MsgNode msg;
+// };
 
 
 class MsgNode{
