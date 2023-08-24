@@ -248,9 +248,12 @@ void Json::modifyArr(json_t jt,const char* key,vector<double>& arr){
     }
 }
 
+char* Json::serialization(){
+    return cJSON_Print(json_);
+}
 
-const char* Json::deserialization(Json& j){
-    return cJSON_Print(j.json());
+void Json::deserialization(const char* str){
+    json_ = cJSON_Parse(str);
 }
 
 void Json::test(){

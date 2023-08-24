@@ -8,6 +8,15 @@ using namespace std;
 #include "net_server/server.h"
 #include "tool/include/threadPool.h"
 #include "net_client/include/clientEchoSync.h"
+#include "net_server/include/serverEchoAsync.h"
+
+void test(){
+    int t = 0xFF;
+    unsigned int tt = t;
+    cout<<t<<endl;
+    cout<<tt<<endl;
+    
+}
 
 int main(int args,char** argv){
     /* log4cplus config*/
@@ -16,14 +25,14 @@ int main(int args,char** argv){
     Log log;
 
     if(args>1 && !strcmp(argv[1],"server")){
-        asio::io_context ioc;
-        Server server(ioc,6666);
-        server.start_accept();
-        ioc.run();
+        // asio::io_context ioc;
+        // Server server(ioc,6666);
+        // server.start_accept();
+        // ioc.run();
+        serverEcho();
     }else if(args>1 && !strcmp(argv[1],"client")){
         cout<<"client"<<endl;
         clientEcho();
     }
-
-
+    test();
 }

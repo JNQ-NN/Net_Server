@@ -57,8 +57,9 @@ public:
     static void modifyArr(json_t jt,const char* key,vector<double>& arr);
     
     /*数据序列化&反序列化*/
-    //序列化通过Json构造函数即可
-    static const char* deserialization(Json& j);
+    char* serialization();
+    void deserialization(const char* str);
+
 
     static void test();
 private:

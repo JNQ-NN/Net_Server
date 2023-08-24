@@ -39,7 +39,10 @@ public:
         try{
             cout<<"socket receive:";
             cout<<buff<<endl;
-            sock->async_send(asio::buffer(buff,0xFF),std::bind(&ServerEcho::send_handle,this,sock,buff));
+            memset(buff,0,0xFF);
+            sock->async_receive(asio::buffer(buff,0xFF),std::bind(&ServerEcho::receive_handler,this,sock,buff));
+
+            //sock->async_send(asio::buffer(buff,0xFF),std::bind(&ServerEcho::send_handle,this,sock,buff));
         }
         catch(const std::exception& e)
         {

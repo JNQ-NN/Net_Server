@@ -5,6 +5,9 @@
 using namespace std;
 #include "server_session.h"
 
+/*
+* @brief 双工异步通信
+*/
 class Server{
 public:
     Server(asio::io_context& ioc,int port);
@@ -12,8 +15,7 @@ public:
     void handle_accept(const asio::error_code& error,std::shared_ptr<Session> session);
 
 private:
-    asio::io_context& ioc_;
-    //asio::io_service& ios_; //io_context io_service 两者皆可
+    asio::io_context& ioc_; //io_context io_service 两者皆可
     asio::ip::tcp::acceptor acceptor_;
 };
 

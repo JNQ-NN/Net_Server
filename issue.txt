@@ -23,3 +23,13 @@
 
 问题：在线程进行socket accpet时，没有发生阻塞
 解决：考虑看io_context ioc; 是否调用ioc.run();
+
+问题：asio async_receive 一直接收到空数据
+解决：考虑async_receive使用的asio::buff分配的空间可能为0
+
+问题:当发送数据大小 等于 accept的buff大小,会造成多次调用accept,因为内核缓冲区一直有数据未读取,且会造成乱码
+问题:当发送数据大小 等于 accept的buff大小,仍可能造成上述问题
+解决:使用receive时,asio::buff分配的内存空间应略大于发送数据的长度?
+
+问题:发送一次数据||接受一次数据,不能继续接收数据?
+解决:依次排查发送端和接收端,似乎是发送端IO问题

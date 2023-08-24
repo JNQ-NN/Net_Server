@@ -24,8 +24,3 @@ int TOOL::cmd(const char* command,char* res,size_t size){
     }
     return -1;
 }
-
-
-
-
-
