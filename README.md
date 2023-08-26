@@ -43,3 +43,31 @@ $/etc/init.d/mysql
 #安装libmysqlclient库
 $sudo apt-get install libmysqlclient-dev
 #账户&密码 admin&123456
+
+
+#redis
+#redis 安装
+官网下载压缩包
+$tar -zxvf xxx.tar.gz
+$make
+$sudo make install
+或$apt-get install redis-server
+#默认端口6379 
+#账户&密码 admin&123456
+
+#redis-plus-plus
+#基于HiRedis(C)
+#HiRedis安装
+git clone https://github.com/redis/hiredis.git
+cd hiredis
+make
+make install
+#redis-plus-plus
+git clone https://github.com/sewenew/redis-plus-plus.git
+cd redis-plus-plus
+mkdir build
+cd build
+cmake ..
+make
+make install
+cd ..

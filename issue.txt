@@ -44,3 +44,7 @@
 
 问题：两个类互相引用时，会造成error *** was not declared in this scope
 解决：在一个类前，声明另一个类，不需作定义
+
+问题：在库的路径更新.so时，可能存在error while loading shared libraries: libredis++.so.1: cannot open shared object file: No such file or directory
+问题：虽然系统说找不到文件，但实际路径下雀实有相应.so
+解决：ldconfig更新系统的动态链接库缓存

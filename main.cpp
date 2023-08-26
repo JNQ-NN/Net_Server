@@ -1,5 +1,6 @@
 #include "iostream"
 #include <asio.hpp>
+#include <vector>
 using namespace std;
 #include "tool/log.h"
 #include "tool/json.h"
@@ -8,13 +9,12 @@ using namespace std;
 #include "net_server/server.h"
 #include "net_client/client.h"
 #include "tool/include/threadPool.h"
-#include <vector>
+#include "tool/redis_operation.h" 
+
 // #include "net_client/include/clientEchoSync.h"
 // #include "net_server/include/serverEchoAsync.h"
 
 log4cplus::Initializer initializer;
-
-
 
 int main(int args,char** argv){
     /* log4cplus config*/
@@ -37,8 +37,5 @@ int main(int args,char** argv){
         ioc.run();
     }
     
-    // int* ii = fun();
-    // cout<<ii<<endl;
-    // cout<<*ii<<endl;
-   
+    redisTest(); 
 }
