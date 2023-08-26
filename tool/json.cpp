@@ -85,6 +85,7 @@ bool Json::getBool(json_t jt,const char* key){
     json_t j = json(jt,key);
     if(j && j->type == cJSON_False) return false;
     if(j && j->type == cJSON_True) return true;
+    return false;
 }
 
 /*
@@ -98,7 +99,7 @@ void Json::traversalArr(json_t jt,json_cb_t cb){
         int arrLength = cJSON_GetArraySize(jt);
         for(int i = 0;i<arrLength;i++){
             json_t arr_ptr = cJSON_GetArrayItem(jt,i);
-            if(cb(jt)) return ;
+            if(cb(arr_ptr)) return ;
         }
     }
 }

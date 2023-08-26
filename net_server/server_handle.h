@@ -20,7 +20,6 @@ public:
     static void handle_queryExist(shared_ptr<SSession> session,const char* queryCmd);
     static void handle_login();
     static void handle_sign();
-    static Json* parse_msg(char* msg);
 private:
     static queue<char*>* msg_queue_; //消息队列
     static ThreadPool* threadPool_;

@@ -10,7 +10,7 @@ int TOOL::cmd(const char* command,char* res,size_t size){
     //pclose() 关闭管道，即关闭标准I/O流
     if(command==nullptr) return -1;
     char* buff = res;
-    int len = 0;
+    size_t len = 0;
     FILE* fp = NULL;
     if((fp = popen(command,"r")) != NULL){
         while(fgets(buff,size,fp) != NULL){

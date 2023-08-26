@@ -12,7 +12,6 @@ void SHandle::handle_receive(shared_ptr<SSession> session,char* msgRecv){
     {
     case 1: //查询是否存在
         handle_queryExist(session,json->getCharPtr("queryCmd"));
-
         break;
     
     default:
@@ -38,7 +37,5 @@ void SHandle::handle_queryExist(shared_ptr<SSession> session,const char* queryCm
     session->send(const_cast<char*>(msg.c_str()),msg.length());
 }
 
-Json* parse_msg(char* msg){
 
-}
 

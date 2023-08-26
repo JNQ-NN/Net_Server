@@ -65,7 +65,7 @@ string MSG::packing(char* msgBody){
     size_t msgLen = MSGHEAD_LEN + strlen(msgBody)+1;
     char msgArr[msgLen];
     memset(msgArr,' ',msgLen);
-    snprintf(msgArr,msgLen,"%10d%s",msgLen-1-MSGHEAD_LEN,msgBody);
+    snprintf(msgArr,msgLen,"%10ld%s",msgLen-1-MSGHEAD_LEN,msgBody);
     msg = msgArr;
     return msg;
 }

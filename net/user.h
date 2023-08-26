@@ -25,11 +25,6 @@ private:
     char ipAddress[16];
     Mysql* ms_;
     bool isConnection;
-
-    bool login();
-    bool verify(const char* tempName,const char* tempPwd);
-    //bool sign();
-    //bool connectionMysql();
 };
 
 class UerCommon:public User{
