@@ -12,6 +12,13 @@ Json::Json(json_t jt){
 /*
  @json解析，将字符串解析成JSON
 */
+Json::Json(char* jc){
+    json_ = cJSON_Parse(jc);
+}
+
+/*
+ @json解析，将字符串解析成JSON
+*/
 Json::Json(const char* jc){
     json_ = cJSON_Parse(jc);
 }
@@ -47,6 +54,10 @@ double Json::getDouble(const char* key){
     return getDouble(json_,key);
 }
 
+bool Json::getBool(const char* key){
+    return getBool(json_,key);
+}
+
 json_t Json::json(json_t jt,const char* key){
     return (jt && jt->type == cJSON_Object)?cJSON_GetObjectItem(jt,key):nullptr;
 }
@@ -68,6 +79,12 @@ int Json::getInt(json_t jt,const char* key){
 double Json::getDouble(json_t jt,const char* key){
     json_t j = json(jt,key);
     return (j && j->type==cJSON_Number)?j->valuedouble:0;
+}
+
+bool Json::getBool(json_t jt,const char* key){
+    json_t j = json(jt,key);
+    if(j && j->type == cJSON_False) return false;
+    if(j && j->type == cJSON_True) return true;
 }
 
 /*
@@ -98,6 +115,10 @@ void Json::appendDouble(const char* key,double value){
     appendDouble(json_,key,value);
 }
 
+void Json::appendBool(const char* key,bool value){
+    appendBool(json_,key,value);
+}
+
 void Json::appendArr(const char* key,vector<int>& arr){
     appendArr(json_,key,arr);
 }
@@ -120,6 +141,10 @@ void Json::appendInt(json_t jt,const char* key,int value){
 
 void Json::appendDouble(json_t jt,const char* key,double value){
     cJSON_AddNumberToObject(jt,key,value);
+}
+
+void Json::appendBool(json_t jt,const char* key,bool value){
+    cJSON_AddBoolToObject(jt,key,value);
 }
 
 void Json::appendArr(json_t jt,const char* key,vector<int>& arr){
@@ -261,6 +286,8 @@ void Json::test(){
     j.appendCharPtr("str","string");
     j.appendInt("NumInt",666);
     j.appendDouble("NumDouble",6.6);
+    j.appendBool("BoolTrue",true);
+    j.appendBool("BoolFalse",false);
     vector<int> v{1,2,3};
     j.appendArr("Arr1",v);
     vector<double> vv{1.1,2.2,3.3};
@@ -278,6 +305,9 @@ void Json::test(){
     j.modifyArr("Arr2",vvi);
     j.modifyArr("Arr3",vvvi);
     j.show();
+    cout<<j.getBool("BoolTrue")<<endl;
+    cout<<j.getBool("BoolFalse")<<endl;
+
 }
 
 ostream& operator<<(ostream& cout,Json& json){

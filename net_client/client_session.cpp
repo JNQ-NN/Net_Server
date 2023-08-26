@@ -28,8 +28,37 @@ void CSession::start_receive(){
     }
 }
 
+/*
+* 同步发送
+*/
 void CSession::send(char* msg,size_t msgMaxLen){
+    // char msgHead[MSGHEAD_LEN];
+    // char* msgSend;
+    // sprintf(msgHead,MSG_)
     socket_->send(asio::buffer(msg,msgMaxLen));
+}
+
+/*
+* 同步接收
+*/
+void CSession::receive(){
+    /*接收消息头*/
+    try{
+        memset(msgHeadRecv_,' ',MSGHEAD_LEN);
+        socket_->receive(asio::buffer(msgHeadRecv_,MSGHEAD_LEN));
+    }catch(std::exception& e){
+        cerr<<e.what()<<"\n";
+    }
+    /*接收消息体*/  
+    try{
+        msgNodeRecv_->resize(TOOL_Str::strToNum(msgHeadRecv_));
+        socket_->receive(asio::buffer(msgNodeRecv_->getMsg(),msgNodeRecv_->getMsgMaxLen()));
+        cout<<"NNN"<<endl;
+        cout<<msgNodeRecv_->getMsg()<<endl;
+    }catch(std::exception& e){
+        cerr<<e.what()<<"\n";
+    } 
+    
 }
 
 void CSession::handle_receiveMsgHead(const asio::error_code& error){
@@ -63,4 +92,8 @@ void CSession::handle_receiveMsgNode(const asio::error_code& error){
     }catch(std::exception& e){
         cerr<<e.what()<<"\n";
     }
+}
+
+shared_ptr<MsgNode> CSession::getMsgNode(){
+    return msgNodeRecv_;
 }

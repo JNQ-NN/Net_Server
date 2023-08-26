@@ -15,8 +15,10 @@ public:
     ~CSession();
     void start_receive();
     void send(char* msg,size_t msgMaxLen);
+    void receive();
     void handle_receiveMsgHead(const asio::error_code& error);
     void handle_receiveMsgNode(const asio::error_code& error);
+    shared_ptr<MsgNode> getMsgNode();
 private:
     socket_t socket_;
     char* msgHeadRecv_;

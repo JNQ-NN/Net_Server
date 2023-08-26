@@ -71,6 +71,7 @@ void SSession::handle_receiveMsgHead(const asio::error_code& error){
     }
     try{
         auto msgNodeRecvLen = TOOL_Str::strToNum(msgHeadRecv_);
+        cout<<"msgLen:"<<msgNodeRecvLen<<endl;
         msgNodeRecv_->resize(msgNodeRecvLen);
         socket_->async_receive(asio::buffer(msgNodeRecv_->getMsg(),msgNodeRecv_->getMsgMaxLen()),
             std::bind(&SSession::handle_receiveMsgNode,shared_from_this(),std::placeholders::_1));
@@ -88,6 +89,8 @@ void SSession::handle_receiveMsgNode(const asio::error_code& error){
     }
     try{
         cout<<this->msgNodeRecv_->getMsg()<<endl;
+        cout<<strlen(this->msgNodeRecv_->getMsg())<<endl;
+        SHandle::handle_receive(shared_from_this(),this->msgNodeRecv_->getMsg());
         //以此实现循环接受消息头&消息体
         memset(msgHeadRecv_,' ',MSGHEAD_LEN);
         socket_->async_receive(asio::buffer(msgHeadRecv_,MSGHEAD_LEN),

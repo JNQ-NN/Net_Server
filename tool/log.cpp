@@ -23,4 +23,11 @@ void Log::test(){
     mainLog_WARN("warn");
     mainLog_ERROR("error");
     mainLog_FATAL("fatal");
+
+    consoleLog_TRACE("trace");
+    consoleLog_DEBUG("debug");
+    consoleLog_INFO("info");
+    consoleLog_WARN("warn");
+    consoleLog_ERROR("error");
+    consoleLog_FATAL("fatal");
 }

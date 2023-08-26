@@ -1,3 +1,6 @@
+#ifndef __THREADPOOL_H__
+#define __THREADPOOL_H__
+
 #include <iostream>
 #include <mutex>
 #include <thread>
@@ -16,14 +19,14 @@ class ThreadPool{
 public:
     inline ThreadPool(unsigned short threadNumber=0){         
         getMaxThread();
-        consoleLog_INFO("Init ThreadPool");
+        //consoleLog_INFO("Init ThreadPool");
         try{
             addThread(threadNumber>0?threadNumber:maxThreads_);
         }catch( ... ){
             cout<<"error"<<endl;
         }
         maxThreads_ = maxThreads_>threadNumber?maxThreads_:threadNumber;
-        consoleLog_INFO("Init ThreadPool");
+        //consoleLog_INFO("Init ThreadPool");
     }
 
     ~ThreadPool(){
@@ -35,6 +38,9 @@ public:
             }
         } 
     }
+
+    // ThreadPool(const ThreadPool&) = delete;           //禁用拷贝构造
+    // ThreadPool operator=(const ThreadPool&) = delete; //禁用赋值函数
 
     /*
      *@brief 向线程池添加线程
@@ -111,3 +117,4 @@ private:
     }
 };
 
+#endif

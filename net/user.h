@@ -7,6 +7,7 @@
 using namespace std;
 #include "../tool/mysql_operation.h"
 
+
 #define USER_COMMON = 1
 #define USER_ADMIN  = 2
 #define USER_SUPER  = 3

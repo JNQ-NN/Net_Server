@@ -30,8 +30,6 @@ void Server::handle_accept(const asio::error_code& error,std::shared_ptr<SSessio
         cout<<"Client Connection ... "<<endl;
         cout<<"Client Address:"<<session->getSocket()->remote_endpoint().address()<<endl;
         session->start_receive();
-        // char buff[20]="        10HelloANGO";
-        // session->send(buff,20);
         start_accept(); //以此保持accpet状态
     }else{
         cerr<<error.message()<<endl;

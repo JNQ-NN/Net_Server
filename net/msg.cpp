@@ -29,6 +29,11 @@ char* MsgNode::getMsg(){
     return msg_;
 }
 
+Json MsgNode::getJson(){
+    Json json(msg_);
+    return json;
+}
+
 /*
 * @brief resize msg, 不保留原数据
 */
@@ -50,4 +55,21 @@ size_t MsgNode::getMsgMaxLen(){
 
 size_t MsgNode::getMsgCurLen(){
     return msgCurLen_;
+}
+
+/*
+* 将消息封装成协议[消息头+消息体]
+*/
+string MSG::packing(char* msgBody){
+    string msg="";
+    size_t msgLen = MSGHEAD_LEN + strlen(msgBody)+1;
+    char msgArr[msgLen];
+    memset(msgArr,' ',msgLen);
+    snprintf(msgArr,msgLen,"%10d%s",msgLen-1-MSGHEAD_LEN,msgBody);
+    msg = msgArr;
+    return msg;
+}
+
+string MSG::packing(Json* json){
+    return packing(json->serialization());
 }

@@ -39,3 +39,8 @@
 
 问题：multiple definition of 问题
 解决：不应将全局变量以及全局方法定义放在头文件
+
+问题：加入线程池后，log4cplus日志尚有问题，待解决
+
+问题：两个类互相引用时，会造成error *** was not declared in this scope
+解决：在一个类前，声明另一个类，不需作定义

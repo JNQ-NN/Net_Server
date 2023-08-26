@@ -4,6 +4,7 @@
 #include <asio.hpp>
 using namespace std;
 #include "server_session.h"
+#include "server_handle.h"
 
 /*
 * @brief 双工异步通信

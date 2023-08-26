@@ -42,15 +42,15 @@ bool User::verify(const char* tempName,const char* tempPwd){
     char queryCmd[100];
     sprintf(queryCmd,"select * from user where name=\"%s\" and pwd=\"%s\";",tempName,tempPwd);
     cout<<queryCmd<<endl;
-    MYSQL_RES* res = nullptr;
-    res = ms_->mysqlQuery(queryCmd);
-    switch (mysql_num_rows(res))
-    {
-    case 0:
-        return false;
-    case 1:
-        return true;
-    default:
-        return false;
-    }
+    // MYSQL_RES* res = nullptr;
+    // res = ms_->mysqlQuery(queryCmd);
+    // switch (mysql_num_rows(res))
+    // {
+    // case 0:
+    //     return false;
+    // case 1:
+    //     return true;
+    // default:
+    //     return false;
+    // }
 }

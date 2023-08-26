@@ -54,6 +54,16 @@ MYSQL_RES* Mysql::mysqlQuery(const char* queryCmd){
     return res_;
 }
 
+// vector<string> Mysql::mysqlQueryV(const char* queryCmd){
+//     MYSQL_RES* queryRes = nullptr;
+//     vector<string> queryResV;
+//     queryRes = mysqlQuery(queryCmd);
+//     MYSQL_ROW row;
+//     while(row = mysql_fetch_row(queryRes)){
+//         queryResV.push_back(row[0]);
+//     }
+// }
+
 void Mysql::init(){
     mysql_init(mysql_);
 }
