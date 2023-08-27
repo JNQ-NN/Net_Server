@@ -1,6 +1,7 @@
 #include "iostream"
 #include <asio.hpp>
 #include <vector>
+#include <stack>
 using namespace std;
 #include "tool/log.h"
 #include "tool/json.h"
@@ -38,4 +39,5 @@ int main(int args,char** argv){
     }
     
     redisTest(); 
+    stack<int >s;
 }
