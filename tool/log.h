@@ -44,5 +44,3 @@ private:
 #define consoleLog_FATAL(logEvent) LOG4CPLUS_FATAL(Log::getConsoleLogger(),"["<<__FUNCTION__<<"] "<<logEvent);
 
 #endif
-
-// toDo __FILE__ __LINE__ __FUNCTION

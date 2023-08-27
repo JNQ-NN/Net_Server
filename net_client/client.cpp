@@ -10,16 +10,15 @@ Client::Client(asio::io_context& ioc,const char* serverAddress,unsigned short po
 }
 
 void Client::start_client(){
+    
+    /*登录*/
     while(1){
         if(verify_identity()){
             break;
         }else{
             cout<<"请输入正确的账户和密码"<<endl;
-        }
-         
+        }    
     }
-    
-
 }
 
 /*

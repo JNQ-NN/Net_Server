@@ -21,8 +21,6 @@ int main(int args,char** argv){
     /* log4cplus config*/
     log4cplus::PropertyConfigurator::doConfigure(log4cplus_Conf_File);
     Log log;
-    // Log::test();
-    // log.test();
 
     if(args>1 && !strcmp(argv[1],"server")){
         asio::io_context ioc;
@@ -38,6 +36,4 @@ int main(int args,char** argv){
         ioc.run();
     }
     
-    redisTest(); 
-    stack<int >s;
 }

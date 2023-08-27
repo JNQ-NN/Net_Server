@@ -64,8 +64,7 @@ public:
     /*数据序列化&反序列化*/
     char* serialization();
     void deserialization(const char* str);
-
-
+    
     static void test();
 private:
     json_t json_;

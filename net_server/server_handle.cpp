@@ -27,7 +27,6 @@ void SHandle::handle_queryExist(shared_ptr<SSession> session,const char* queryCm
     ms->mysqlConnection();
     MYSQL_RES* queryRes = nullptr;
     queryRes = ms->mysqlQuery(queryCmd);
-
     bool isExist = mysql_num_rows(queryRes)>0?true:false;
 
     Json* json = new Json();
@@ -36,6 +35,3 @@ void SHandle::handle_queryExist(shared_ptr<SSession> session,const char* queryCm
     string msg = MSG::packing(json);
     session->send(const_cast<char*>(msg.c_str()),msg.length());
 }
-
-
-
