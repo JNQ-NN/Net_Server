@@ -15,6 +15,7 @@ public:
 private:
     asio::io_context& ioc_;
     shared_ptr<CSession> session_;
+    bool login();
     bool verify_identity();
 };
 

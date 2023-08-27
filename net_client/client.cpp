@@ -2,6 +2,7 @@
 
 Client::Client(asio::io_context& ioc,const char* serverAddress,unsigned short port):ioc_(ioc){
     auto ep = asio::ip::tcp::endpoint(asio::ip::address::from_string(serverAddress),port);
+    system("clear");
     cout<<"############"<<endl;
     cout<<"client start"<<endl;
     session_ = make_shared<CSession>(ioc,ep);
@@ -10,17 +11,44 @@ Client::Client(asio::io_context& ioc,const char* serverAddress,unsigned short po
 }
 
 void Client::start_client(){
+    system("clear");
+    cout<<"######"<<endl;
+    cout<<"1.登录"<<endl;
+    cout<<"2.注册"<<endl;
+    cout<<"q.退出"<<endl;
+    char choice = 'q';
+    cout<<"请选择:";
+    cin>>choice;
+    switch (choice)
+    {
+    case '1':
+        login();
+        break;
+    case 'q':
+        std::exit(0);
+        break;
     
-    /*登录*/
-    while(1){
-        if(verify_identity()){
-            break;
-        }else{
-            cout<<"请输入正确的账户和密码"<<endl;
-        }    
+    default:
+        break;
     }
 }
 
+/*
+* @brief 登录
+*/
+bool Client::login(){
+    system("clear");
+    while(1){
+        if(verify_identity()){
+            cout<<"登录成功"<<endl;
+            break;
+        }else{
+            system("clear");
+            cout<<"请输入正确的账户和密码"<<endl;
+        }    
+    }
+    return true;
+}
 /*
 * @brief 身份验证
 */

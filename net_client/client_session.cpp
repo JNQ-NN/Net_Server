@@ -53,8 +53,6 @@ void CSession::receive(){
     try{
         msgNodeRecv_->resize(TOOL_Str::strToNum(msgHeadRecv_));
         socket_->receive(asio::buffer(msgNodeRecv_->getMsg(),msgNodeRecv_->getMsgMaxLen()));
-        cout<<"NNN"<<endl;
-        cout<<msgNodeRecv_->getMsg()<<endl;
     }catch(std::exception& e){
         cerr<<e.what()<<"\n";
     } 

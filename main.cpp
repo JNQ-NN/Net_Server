@@ -5,7 +5,6 @@
 using namespace std;
 #include "tool/log.h"
 #include "tool/json.h"
-#include "tool/lock.h"
 #include "tool/tool.h"
 #include "net_server/server.h"
 #include "net_client/client.h"
