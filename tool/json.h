@@ -33,6 +33,7 @@ public:
 
     /*数据增添*/
     void appendCharPtr(const char* key,const char* value);
+    void appendStr(string key,string value);
     void appendInt(const char* key,int value);
     void appendDouble(const char* key,double value);
     void appendBool(const char* key,bool value);
@@ -40,6 +41,7 @@ public:
     void appendArr(const char* key,vector<double>& arr);
     void appendArr(const char* key,vector<const char*>& arr);
     static void appendCharPtr(json_t jt,const char* key,const char* value);
+    static void appendStr(json_t jt,string key,string value);
     static void appendInt(json_t jt,const char* key,int value);
     static void appendDouble(json_t jt,const char* key,double value);
     static void appendBool(json_t jt,const char* key,bool value);

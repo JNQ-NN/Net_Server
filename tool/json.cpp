@@ -108,6 +108,10 @@ void Json::appendCharPtr(const char* key,const char* value){
     appendCharPtr(json_,key,value);
 }
 
+void Json::appendStr(string key,string value){
+    appendStr(json_,key,value);
+}
+
 void Json::appendInt(const char* key,int value){
     appendInt(json_,key,value);
 }
@@ -134,6 +138,10 @@ void Json::appendArr(const char* key,vector<const char*>& arr){
 
 void Json::appendCharPtr(json_t jt,const char* key,const char* value){
     cJSON_AddStringToObject(jt,key,value);
+}
+
+void Json::appendStr(json_t jt,string key,string value){
+    cJSON_AddStringToObject(jt,const_cast<char*>(key.c_str()),const_cast<char*>(value.c_str()));
 }
 
 void Json::appendInt(json_t jt,const char* key,int value){

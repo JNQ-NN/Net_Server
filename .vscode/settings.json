@@ -79,6 +79,7 @@
         "netfwd": "cpp",
         "socket": "cpp",
         "timer": "cpp",
-        "*.ipp": "cpp"
+        "*.ipp": "cpp",
+        "unordered_set": "cpp"
     }
 }

@@ -7,6 +7,7 @@ using namespace std;
 
 namespace TOOL{
     int cmd(const char* command,char* res,size_t size);
+    char* getCurTime();
 }
 
 namespace TOOL_Str{

@@ -10,7 +10,7 @@ void SHandle::handle_receive(shared_ptr<SSession> session,char* msgRecv){
     shared_ptr<Json> json = make_shared<Json>(msgRecv);
     switch (json->getInt("mode"))
     {
-    case 1: //查询是否存在
+    case MSGMODE_MYSQL_QUERY_EXIST: //查询是否存在
         handle_queryExist(session,json->getCharPtr("queryCmd"));
         break;
     
@@ -27,11 +27,13 @@ void SHandle::handle_queryExist(shared_ptr<SSession> session,const char* queryCm
     ms->mysqlConnection();
     MYSQL_RES* queryRes = nullptr;
     queryRes = ms->mysqlQuery(queryCmd);
+    cout<<"?"<<endl;
+    cout<<mysql_num_fields(queryRes)<<endl;
     bool isExist = mysql_num_rows(queryRes)>0?true:false;
-
     Json* json = new Json();
     json->appendInt("mode",1);
     json->appendBool("queryRes",isExist);
     string msg = MSG::packing(json);
     session->send(const_cast<char*>(msg.c_str()),msg.length());
+    mysql_free_result(queryRes);
 }

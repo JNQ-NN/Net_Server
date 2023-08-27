@@ -8,23 +8,29 @@ using namespace std;
 #include "../tool/mysql_operation.h"
 
 
-#define USER_COMMON = 1
-#define USER_ADMIN  = 2
-#define USER_SUPER  = 3
+#define USER_COMMON  1
+#define USER_ADMIN   2
+#define USER_SUPER   3
+
+#define USER_NAME_LEN      10
+#define USER_PWD_LEN    20
+#define USER_IPADDRESS_LEN 16
 class User{
 public:
     User();
+    User(char* name,char* pwd);
     virtual ~User();
     // int getId();
-    // char* getName();
+    void setName(char* name);
+    char* getName();
 private:
-    int id;
-    int identity;
-    char name[10];
-    char pwd[20];
-    char ipAddress[16];
+    int id_;
+    int identity_;
+    char* name_;
+    char* pwd_;
+    char ipAddress_[USER_IPADDRESS_LEN];
     Mysql* ms_;
-    bool isConnection;
+    bool isConnection_;
 };
 
 class UerCommon:public User{

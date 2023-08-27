@@ -34,5 +34,4 @@ int main(int args,char** argv){
         Client client(ioc,"111.231.12.131",6666);
         ioc.run();
     }
-    
 }

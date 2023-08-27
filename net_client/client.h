@@ -11,12 +11,16 @@ using namespace std;
 class Client{
 public:
     Client(asio::io_context& ioc,const char* serverAddress,unsigned short port);
+    ~Client();
     void start_client();
 private:
     asio::io_context& ioc_;
     shared_ptr<CSession> session_;
+    User* user_;
     bool login();
     bool verify_identity();
+    //void send(char* toUser,string msg);
+    void sendMsg();
 };
 
 #endif

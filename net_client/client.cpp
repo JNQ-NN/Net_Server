@@ -6,8 +6,12 @@ Client::Client(asio::io_context& ioc,const char* serverAddress,unsigned short po
     cout<<"############"<<endl;
     cout<<"client start"<<endl;
     session_ = make_shared<CSession>(ioc,ep);
-    //session_->start_receive();
+    user_ = new User();
     start_client();
+}
+
+Client::~Client(){
+    delete user_;
 }
 
 void Client::start_client(){
@@ -27,10 +31,11 @@ void Client::start_client(){
     case 'q':
         std::exit(0);
         break;
-    
     default:
         break;
     }
+    sendMsg();
+    
 }
 
 /*
@@ -53,8 +58,8 @@ bool Client::login(){
 * @brief 身份验证
 */
 bool Client::verify_identity(){
-    char name[10];
-    char pwd [20];
+    char name[USER_NAME_LEN];
+    char pwd [USER_PWD_LEN];
     cout<<"请输入用户名:";
     cin>>name;
     cout<<"请输入密码:";
@@ -67,11 +72,38 @@ bool Client::verify_identity(){
     queryCmd.append("\";");
     queryCmd.shrink_to_fit();
     Json* json = new Json();
-    json->appendInt("mode",1);
+    json->appendInt("mode",MSGMODE_MYSQL_QUERY_EXIST);
     json->appendCharPtr("queryCmd",queryCmd.c_str());
     string msg = MSG::packing(json);
     session_->send(const_cast<char*>(msg.c_str()),msg.length());
     delete json;
     session_->receive();
-    return session_->getMsgNode()->getJson().getBool("queryRes");
+    auto queryRes = session_->getMsgNode()->getJson().getBool("queryRes");
+    user_->setName(name);
+    cout<<user_->getName()<<endl;
+    return queryRes;
+}
+
+/*
+* @brief 发送消息
+*/
+void Client::sendMsg(){
+    cout<<"你好,"<<user_->getName()<<endl;
+    char toUser[USER_NAME_LEN];
+    cout<<"请输入消息发送用户:";
+    cin>>toUser;
+    cout<<"请输入发送的消息:";
+    string msg;
+    cin>>msg;
+
+    cout<<"testt:"<<user_->getName()<<endl;
+    Json* json = new Json();
+    json->appendInt("mode",MSGMODE_REDIS_SEND_MSG);
+    // json->appendCharPtr("time",TOOL::getCurTime());
+    json->appendCharPtr("fromUser",user_->getName());
+    json->appendCharPtr("toUser",toUser);
+    json->appendStr("msg",msg);
+    cout<<json->serialization()<<endl;
+    msg = MSG::packing(json);
+    delete json;
 }

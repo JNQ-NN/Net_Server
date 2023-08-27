@@ -2,10 +2,15 @@
 #define __MSG_H__
 #include <iostream>
 #include <string.h>
+#include <time.h>
 using namespace std;
 #include "../tool/json.h"
 
 #define MSGHEAD_LEN  10 //消息头长度 10[MSGNODE_LEN]
+
+#define MSGMODE_MYSQL_QUERY_EXIST 1
+#define MSGMODE_MYSQL_QUERY_ALL   2
+#define MSGMODE_REDIS_SEND_MSG    11
 
 /*
 * @brief 消息体
