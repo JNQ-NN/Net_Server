@@ -13,7 +13,10 @@ void SHandle::handle_receive(shared_ptr<SSession> session,char* msgRecv){
     case MSGMODE_MYSQL_QUERY_EXIST: //查询是否存在
         handle_queryExist(session,json->getCharPtr("queryCmd"));
         break;
-    
+    case MSGMODE_REDIS_SEND_MSG:   //发送消息
+        handle_redis_sendMsg(session,json);
+        break;
+
     default:
         break;
     }
@@ -36,4 +39,8 @@ void SHandle::handle_queryExist(shared_ptr<SSession> session,const char* queryCm
     string msg = MSG::packing(json);
     session->send(const_cast<char*>(msg.c_str()),msg.length());
     mysql_free_result(queryRes);
+}
+
+void SHandle::handle_redis_sendMsg(shared_ptr<SSession> session,shared_ptr<Json> json){
+    RedisMSG::sendMessage(json->getCharPtr("fromUser"),json->getCharPtr("toUser"),json->serialization());
 }

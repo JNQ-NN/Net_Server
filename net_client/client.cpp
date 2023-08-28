@@ -99,11 +99,15 @@ void Client::sendMsg(){
     cout<<"testt:"<<user_->getName()<<endl;
     Json* json = new Json();
     json->appendInt("mode",MSGMODE_REDIS_SEND_MSG);
-    // json->appendCharPtr("time",TOOL::getCurTime());
+    json->appendStr("time",TOOL::getCurTime());
     json->appendCharPtr("fromUser",user_->getName());
     json->appendCharPtr("toUser",toUser);
     json->appendStr("msg",msg);
-    cout<<json->serialization()<<endl;
-    msg = MSG::packing(json);
+    handle_sendMsg(json);
     delete json;
+}
+
+void Client::handle_sendMsg(Json* json){
+    string msg = MSG::packing(json);
+    session_->send(const_cast<char*>(msg.c_str()),msg.length());
 }

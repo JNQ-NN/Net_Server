@@ -9,7 +9,6 @@ using namespace std;
 using namespace sw::redis;
 #include "mysql_operation.h"
 
-
 namespace RedisMSG{
     // void redisTest(){
     //     redis.set("key","value");

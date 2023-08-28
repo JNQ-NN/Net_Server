@@ -25,12 +25,13 @@ int TOOL::cmd(const char* command,char* res,size_t size){
     return -1;
 }
 
-char* TOOL::getCurTime(){
+string TOOL::getCurTime(){
     time_t t = time(NULL);
     struct tm* stime=localtime(&t);
     char curTime[32]{0};
     snprintf(curTime,sizeof(curTime),"%04d-%02d-%02d %02d:%02d:%02d",1900+stime->tm_year,1+stime->tm_mon,stime->tm_mday, stime->tm_hour,stime->tm_min,stime->tm_sec);
-    return curTime;
+    string curTimeString = curTime;
+    return curTimeString;
 }
 
 /*
