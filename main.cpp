@@ -14,6 +14,8 @@ using namespace std;
 // #include "net_client/include/clientEchoSync.h"
 // #include "net_server/include/serverEchoAsync.h"
 
+
+
 log4cplus::Initializer initializer;
 
 int main(int args,char** argv){
@@ -34,4 +36,6 @@ int main(int args,char** argv){
         Client client(ioc,"111.231.12.131",6666);
         ioc.run();
     }
+    test();
 }
+

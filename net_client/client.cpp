@@ -34,7 +34,34 @@ void Client::start_client(){
     default:
         break;
     }
-    sendMsg();
+
+    while(1){
+        system("clear");
+        cout<<"###########"<<endl;
+        cout<<"1.发送消息"<<endl;
+        cout<<"2.查看用户消息"<<endl;
+        cout<<"3.查看群组消息"<<endl;
+        cout<<"4.查看所有消息"<<endl;
+        cout<<"q.退出"<<endl;
+        cout<<"请选择:";
+        cin>>choice;
+        switch (choice)
+        {
+        case '1':
+            sendMsg();
+            break;
+        case '2':
+            showUserMSG();
+            break;
+        case 'q':
+            std::exit(0);
+            break;
+        default:
+            break;
+        }
+    }
+    
+ 
     
 }
 
@@ -98,7 +125,7 @@ void Client::sendMsg(){
 
     cout<<"testt:"<<user_->getName()<<endl;
     Json* json = new Json();
-    json->appendInt("mode",MSGMODE_REDIS_SEND_MSG);
+    json->appendInt("mode",MSGMODE_REDIS_USER_SENDMSG);
     json->appendStr("time",TOOL::getCurTime());
     json->appendCharPtr("fromUser",user_->getName());
     json->appendCharPtr("toUser",toUser);
@@ -107,7 +134,27 @@ void Client::sendMsg(){
     delete json;
 }
 
+void Client::showUserMSG(){
+    char toUser[USER_NAME_LEN];
+    cout<<"请输入目标用户:";
+    cin>>toUser;
+    system("clear");
+    cout<<"To:"<<toUser;
+
+    Json* json = new Json();
+    json->appendInt("mode",MSGMODE_REDIS_USER_SHOWMSG);
+    json->appendCharPtr("fromUser",user_->getName());
+    json->appendCharPtr("toUser",toUser);
+    handle_showUserMSG(json);
+    delete json;
+}
+
 void Client::handle_sendMsg(Json* json){
+    string msg = MSG::packing(json);
+    session_->send(const_cast<char*>(msg.c_str()),msg.length());
+}
+
+void Client::handle_showUserMSG(Json* json){
     string msg = MSG::packing(json);
     session_->send(const_cast<char*>(msg.c_str()),msg.length());
 }

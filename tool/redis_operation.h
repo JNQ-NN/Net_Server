@@ -8,15 +8,12 @@
 using namespace std;
 using namespace sw::redis;
 #include "mysql_operation.h"
+#include "json.h"
 
 namespace RedisMSG{
-    // void redisTest(){
-    //     redis.set("key","value");
-    //     auto value = redis.get("key");
-    //     cout<<*value<<endl;
-    // }
-
+    void checkConnection();
     void sendMessage(const char* fromUser,const char* toUser,const char* msg);
-}
+    string getUserMessage(const char* fromUser);
+};
 
 #endif
