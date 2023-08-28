@@ -11,10 +11,10 @@ void SHandle::handle_receive(shared_ptr<SSession> session,char* msgRecv){
     switch (json->getInt("mode"))
     {
     case MSGMODE_MYSQL_QUERY_EXIST: //查询是否存在
-        handle_queryExist(session,json->getCharPtr("queryCmd"));
+        threadPool_->commit(handle_queryExist,session,json->getCharPtr("queryCmd"));
         break;
     case MSGMODE_REDIS_SEND_MSG:   //发送消息
-        handle_redis_sendMsg(session,json);
+        threadPool_->commit(handle_redis_sendMsg,session,json);
         break;
 
     default:
