@@ -19,7 +19,7 @@ void SHandle::handle_receive(shared_ptr<SSession> session,char* msgRecv){
         break;
     case MSGMODE_REDIS_USER_SHOWMSG:  //显示用户沟通的消息
         cout<<"call0"<<endl;
-        threadPool_->commit(handle_redis_showMsg,session,json);
+        threadPool_->commit(handle_redis_showUserMsg,session,json);
         break;
     default:
         break;
@@ -36,19 +36,25 @@ void SHandle::handle_queryExist(shared_ptr<SSession> session,const char* queryCm
     queryRes = ms->mysqlQuery(queryCmd);
     bool isExist = mysql_num_rows(queryRes)>0?true:false;
     Json* json = new Json();
-    json->appendInt("mode",1);
+    json->appendInt("mode",MSGMODE_MYSQL_QUERY_EXIST);
     json->appendBool("queryRes",isExist);
     string msg = MSG::packing(json);
     session->send(const_cast<char*>(msg.c_str()),msg.length());
     mysql_free_result(queryRes);
+    delete json;
 }
 
 void SHandle::handle_redis_sendMsg(shared_ptr<SSession> session,shared_ptr<Json> json){
     RedisMSG::sendMessage(json->getCharPtr("fromUser"),json->getCharPtr("toUser"),json->serialization());
 }
 
-void SHandle::handle_redis_showMsg(shared_ptr<SSession> session,shared_ptr<Json> json){
-    cout<<"call1"<<endl;
-    string temp = RedisMSG::getUserMessage(json->getCharPtr("fromUser"));
-    cout<<"call2"<<endl;
+void SHandle::handle_redis_showUserMsg(shared_ptr<SSession> session,shared_ptr<Json> json){
+    vector<string> msgs;
+    RedisMSG::getUserMessage(json->getCharPtr("fromUser"),msgs);
+    Json* msgJson = new Json();
+    msgJson->appendInt("mode",MSGMODE_REDIS_USER_SHOWMSG);
+    msgJson->appendArr("msgs",msgs);
+    string msg = MSG::packing(msgJson);
+    session->send(const_cast<char*>(msg.c_str()),msg.length());
+    delete msgJson;
 }

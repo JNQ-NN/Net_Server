@@ -132,6 +132,10 @@ void Json::appendArr(const char* key,vector<double>& arr){
     appendArr(json_,key,arr);
 }
 
+void Json::appendArr(const char* key,vector<string>& arr){
+    appendArr(json_,key,arr);
+}
+
 void Json::appendArr(const char* key,vector<const char*>& arr){
     appendArr(json_,key,arr);
 }
@@ -170,6 +174,15 @@ void Json::appendArr(json_t jt,const char* key,vector<double>& arr){
     tempArr = cJSON_CreateArray();
     for(auto &a:arr){
         cJSON_AddItemToArray(tempArr,cJSON_CreateNumber(a));
+    }
+    cJSON_AddItemToObject(jt,key,tempArr);
+}
+
+void Json::appendArr(json_t jt,const char* key,vector<string>& arr){
+    json_t tempArr = nullptr;
+    tempArr = cJSON_CreateArray();
+    for(auto &a:arr){
+        cJSON_AddItemToArray(tempArr,cJSON_CreateString(a.c_str()));
     }
     cJSON_AddItemToObject(jt,key,tempArr);
 }
@@ -303,6 +316,11 @@ void Json::test(){
     j.appendArr("Arr2",vv);
     vector<const char*> vvv{"a1","a2","a3"};
     j.appendArr("Arr3",vvv);
+    vector<string> sss;
+    sss.push_back("test1");
+    sss.push_back("test2");
+    sss.push_back("test3");
+    j.appendArr("testVectorString",sss);
     j.show();
     j.modifyCharPtr("str","charptr");
     j.modifyInt("NumInt",888);
@@ -316,7 +334,6 @@ void Json::test(){
     j.show();
     cout<<j.getBool("BoolTrue")<<endl;
     cout<<j.getBool("BoolFalse")<<endl;
-
 }
 
 ostream& operator<<(ostream& cout,Json& json){

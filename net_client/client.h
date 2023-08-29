@@ -7,6 +7,7 @@ using namespace std;
 #include "client_session.h"
 #include "../net/msg.h"
 #include "../net/user.h"
+#include <thread>
 
 class Client{
 public:
@@ -23,7 +24,6 @@ private:
     void sendMsg();
     void showUserMSG();
     void handle_sendMsg(Json* json);
-    void handle_showUserMSG(Json* json);
 };
 
 #endif

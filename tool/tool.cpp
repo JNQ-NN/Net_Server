@@ -1,5 +1,14 @@
 #include "tool.h"
 
+int TOOL::cmd(const char* command){
+    if(command==nullptr) return -1;
+    FILE* fp = NULL;
+    if((fp = popen(command,"r")) != NULL){
+          return pclose(fp);
+    }
+    return -1;
+}
+
 /*
 * @brief  执行linux命令
 * @return 执行linux指令的返回值，即`$?`

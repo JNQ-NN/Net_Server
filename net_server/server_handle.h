@@ -23,7 +23,7 @@ public:
     static void handle_receive(shared_ptr<SSession> session,char* msgRecv);  //此处加个协程，进行事件分发
     static void handle_queryExist(shared_ptr<SSession> session,const char* queryCmd);
     static void handle_redis_sendMsg(shared_ptr<SSession> session,shared_ptr<Json> json);
-    static void handle_redis_showMsg(shared_ptr<SSession> session,shared_ptr<Json> json);
+    static void handle_redis_showUserMsg(shared_ptr<SSession> session,shared_ptr<Json> json);
     static void handle_login();
     static void handle_sign();
 private:

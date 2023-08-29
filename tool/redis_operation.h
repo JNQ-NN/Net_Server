@@ -3,17 +3,19 @@
 
 #include <iostream>
 #include <vector>
+#include <thread>
 #include <map>
 #include <sw/redis++/redis++.h>
 using namespace std;
 using namespace sw::redis;
 #include "mysql_operation.h"
 #include "json.h"
+#include "tool.h"
 
 namespace RedisMSG{
-    void checkConnection();
+    void checkRedisConnection();
     void sendMessage(const char* fromUser,const char* toUser,const char* msg);
-    string getUserMessage(const char* fromUser);
+    void getUserMessage(const char* fromUser,vector<string>& msgs);
 };
 
 #endif

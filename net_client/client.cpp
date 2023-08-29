@@ -101,8 +101,7 @@ bool Client::verify_identity(){
     Json* json = new Json();
     json->appendInt("mode",MSGMODE_MYSQL_QUERY_EXIST);
     json->appendCharPtr("queryCmd",queryCmd.c_str());
-    string msg = MSG::packing(json);
-    session_->send(const_cast<char*>(msg.c_str()),msg.length());
+    handle_sendMsg(json);
     delete json;
     session_->receive();
     auto queryRes = session_->getMsgNode()->getJson().getBool("queryRes");
@@ -135,18 +134,26 @@ void Client::sendMsg(){
 }
 
 void Client::showUserMSG(){
+    //选择目标用户
     char toUser[USER_NAME_LEN];
     cout<<"请输入目标用户:";
     cin>>toUser;
     system("clear");
     cout<<"To:"<<toUser;
-
+    //发送消息请求
     Json* json = new Json();
     json->appendInt("mode",MSGMODE_REDIS_USER_SHOWMSG);
     json->appendCharPtr("fromUser",user_->getName());
     json->appendCharPtr("toUser",toUser);
-    handle_showUserMSG(json);
+    handle_sendMsg(json);
     delete json;
+    //接受查询结果
+    session_->receive();
+    auto userMsg = session_->getMsgNode()->getMsg();
+    cout<<userMsg<<endl;
+    this_thread::sleep_for(std::chrono::seconds(1000));  //断点
+    
+
 }
 
 void Client::handle_sendMsg(Json* json){
@@ -154,7 +161,3 @@ void Client::handle_sendMsg(Json* json){
     session_->send(const_cast<char*>(msg.c_str()),msg.length());
 }
 
-void Client::handle_showUserMSG(Json* json){
-    string msg = MSG::packing(json);
-    session_->send(const_cast<char*>(msg.c_str()),msg.length());
-}

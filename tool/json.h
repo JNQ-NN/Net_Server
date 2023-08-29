@@ -5,6 +5,7 @@
 using namespace std;
 #include "cJSON.h"
 
+
 typedef cJSON* json_t;
 typedef function<bool(json_t)> json_cb_t;
 class Json{
@@ -39,6 +40,7 @@ public:
     void appendBool(const char* key,bool value);
     void appendArr(const char* key,vector<int>& arr);
     void appendArr(const char* key,vector<double>& arr);
+    void appendArr(const char* key,vector<string>& arr);
     void appendArr(const char* key,vector<const char*>& arr);
     static void appendCharPtr(json_t jt,const char* key,const char* value);
     static void appendStr(json_t jt,string key,string value);
@@ -47,6 +49,7 @@ public:
     static void appendBool(json_t jt,const char* key,bool value);
     static void appendArr(json_t jt,const char* key,vector<int>& arr);
     static void appendArr(json_t jt,const char* key,vector<double>& arr);
+    static void appendArr(json_t jt,const char* key,vector<string>& arr);
     static void appendArr(json_t jt,const char* key,vector<const char*>& arr);
 
     /*数据修改*/

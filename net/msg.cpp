@@ -70,6 +70,10 @@ string MSG::packing(char* msgBody){
     return msg;
 }
 
+/*
+* 将消息封装成协议[消息头+消息体]
+*/
 string MSG::packing(Json* json){
     return packing(json->serialization());
 }
+
