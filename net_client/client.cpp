@@ -133,27 +133,34 @@ void Client::sendMsg(){
     delete json;
 }
 
+/*
+* 显示和指定用户的聊天记录 
+*/
 void Client::showUserMSG(){
-    //选择目标用户
+    /*选择目标用户*/
     char toUser[USER_NAME_LEN];
     cout<<"请输入目标用户:";
     cin>>toUser;
     system("clear");
-    cout<<"To:"<<toUser;
-    //发送消息请求
+    cout<<"To: "<<toUser<<endl;
+    /*发送消息请求*/
     Json* json = new Json();
     json->appendInt("mode",MSGMODE_REDIS_USER_SHOWMSG);
     json->appendCharPtr("fromUser",user_->getName());
     json->appendCharPtr("toUser",toUser);
     handle_sendMsg(json);
     delete json;
-    //接受查询结果
+    /*接受查询结果*/
     session_->receive();
-    auto userMsg = session_->getMsgNode()->getMsg();
-    cout<<userMsg<<endl;
-    this_thread::sleep_for(std::chrono::seconds(1000));  //断点
-    
-
+    /*显示查询结果*/
+    vector<string> userMsgs; 
+    session_->getMsgNode()->getJson().getStrArr("msgs",userMsgs);
+    for(auto& um:userMsgs){
+        Json jsonUm(um);
+        cout<<"["<<jsonUm.getCharPtr("time")<<"]";
+        cout<<"["<<jsonUm.getCharPtr("fromUser")<<"] ";
+        cout<<jsonUm.getCharPtr("msg")<<endl;
+    }
 }
 
 void Client::handle_sendMsg(Json* json){

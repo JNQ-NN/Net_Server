@@ -9,6 +9,10 @@ Json::Json(json_t jt){
     json_ = jt;
 }
 
+Json::Json(string jc){
+    json_ = cJSON_Parse(jc.c_str());
+}
+
 /*
  @json解析，将字符串解析成JSON
 */
@@ -58,6 +62,10 @@ bool Json::getBool(const char* key){
     return getBool(json_,key);
 }
 
+void Json::getStrArr(const char* key,vector<string>& vs){
+    getStrArr(json_,key,vs);
+}
+
 json_t Json::json(json_t jt,const char* key){
     return (jt && jt->type == cJSON_Object)?cJSON_GetObjectItem(jt,key):nullptr;
 }
@@ -86,6 +94,18 @@ bool Json::getBool(json_t jt,const char* key){
     if(j && j->type == cJSON_False) return false;
     if(j && j->type == cJSON_True) return true;
     return false;
+}
+
+void Json::getStrArr(json_t jt,const char* key,vector<string>& vs){
+    json_t jsonArr = json(jt,key);
+    if(!jsonArr && jsonArr->type!=cJSON_Array) return;
+    int arrLength = cJSON_GetArraySize(jsonArr);
+    json_t jArrItem = nullptr;
+    for(int i =0;i<arrLength;i++){
+        jArrItem = cJSON_GetArrayItem(jsonArr,i);
+        vs.push_back(jArrItem->valuestring);
+    }
+    // cJSON_free()
 }
 
 /*

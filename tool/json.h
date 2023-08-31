@@ -13,7 +13,9 @@ public:
     Json();
     explicit Json(json_t jt);
     explicit Json(char* jc);
+    explicit Json(string jc);
     explicit Json(const char* jc);
+
     ~Json();
 
     /*数据查询*/
@@ -24,12 +26,14 @@ public:
     int getInt(const char* key);
     double getDouble(const char* key);
     bool getBool(const char* key);
+    void getStrArr(const char* key,vector<string>& vs);
     static json_t json(json_t jt,const char* key);
     static void show(json_t jt);
     static const char* getCharPtr(json_t jt,const char* key);
     static int getInt(json_t jt,const char* key);
     static double getDouble(json_t jt,const char* key);
     static bool getBool(json_t jt,const char* key);
+    static void getStrArr(json_t jt,const char* key,vector<string>& vs);
     static void traversalArr(json_t jt,json_cb_t cb);
 
     /*数据增添*/
