@@ -11,14 +11,13 @@ void SHandle::handle_receive(shared_ptr<SSession> session,char* msgRecv){
     cout<<"receive！"<<endl;
     switch (json->getInt("mode"))
     {
-    case MSGMODE_MYSQL_QUERY_EXIST: //查询是否存在
+    case MSGMODE_MYSQL_QUERY_EXIST:    //查询是否存在
         threadPool_->commit(handle_queryExist,session,json->getCharPtr("queryCmd"));
         break;
     case MSGMODE_REDIS_USER_SENDMSG:   //发送消息
         threadPool_->commit(handle_redis_sendMsg,session,json);
         break;
-    case MSGMODE_REDIS_USER_SHOWMSG:  //显示用户沟通的消息
-        cout<<"call0"<<endl;
+    case MSGMODE_REDIS_USER_SHOWMSG:   //显示用户沟通的消息
         threadPool_->commit(handle_redis_showUserMsg,session,json);
         break;
     default:

@@ -114,6 +114,7 @@ bool Client::verify_identity(){
 * @brief 发送消息
 */
 void Client::sendMsg(){
+    system("clear");
     cout<<"你好,"<<user_->getName()<<endl;
     char toUser[USER_NAME_LEN];
     cout<<"请输入消息发送用户:";
@@ -157,10 +158,13 @@ void Client::showUserMSG(){
     session_->getMsgNode()->getJson().getStrArr("msgs",userMsgs);
     for(auto& um:userMsgs){
         Json jsonUm(um);
-        cout<<"["<<jsonUm.getCharPtr("time")<<"]";
-        cout<<"["<<jsonUm.getCharPtr("fromUser")<<"] ";
-        cout<<jsonUm.getCharPtr("msg")<<endl;
+        if(!strcmp(jsonUm.getCharPtr("fromUser"),toUser) || !strcmp(jsonUm.getCharPtr("toUser"),toUser)){
+            cout<<"["<<jsonUm.getCharPtr("time")<<"]";
+            cout<<"["<<jsonUm.getCharPtr("fromUser")<<"] ";
+            cout<<jsonUm.getCharPtr("msg")<<endl;
+        }
     }
+    this_thread::sleep_for(chrono::seconds(5));
 }
 
 void Client::handle_sendMsg(Json* json){

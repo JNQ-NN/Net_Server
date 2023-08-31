@@ -15,12 +15,12 @@ using namespace std;
 // #include "net_client/include/clientEchoSync.h"
 // #include "net_server/include/serverEchoAsync.h"
 
-
 void test(){
-    cout<<1<<endl;
-    cin.get();
-    cout<<1<<endl;
-    cout<<1<<endl;
+    char arr[] = "test";
+    const char* cc = "test";
+    char* cp = arr;
+    cout<<strcmp(arr,"??")<<endl;;
+    cout<<strcmp(cc,cc)<<endl;;
 
 }
 

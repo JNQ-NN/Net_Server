@@ -3,7 +3,8 @@
 static auto redis = Redis("tcp://127.0.0.1:6379");; //Reids保持连接状态
 
 /*
-* 检查Redis是否连接，若未连接，考虑redis-server未开启
+* @brief 检查Redis是否连接，若未连接，考虑redis-server未开启
+* TODO:没啥用,得在Main之前,使用脚本检测,若检测未连接,应调用$redis-server
 */
 void RedisMSG::checkRedisConnection(){
     while(1){
