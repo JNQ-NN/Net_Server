@@ -23,6 +23,7 @@ private:
     //void send(char* toUser,string msg);
     void sendMsg(int sendMode);
     void showUserMSG();
+    void showGroupMSG();
     void handle_sendMsg(Json* json);
 };
 

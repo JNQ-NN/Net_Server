@@ -57,6 +57,9 @@ void Client::start_client(){
         case '3':
             showUserMSG();
             break;
+        case '4':
+            showGroupMSG();
+            break;
         case 'q':
             std::exit(0);
             break;
@@ -192,5 +195,46 @@ void Client::showUserMSG(){
 void Client::handle_sendMsg(Json* json){
     string msg = MSG::packing(json);
     session_->send(const_cast<char*>(msg.c_str()),msg.length());
+}
+
+void Client::showGroupMSG(){
+    /*选择目标群组*/
+    char toGroup[USER_NAME_LEN];
+    cout<<"请输入查看信息的目标群组:";
+    cin>>toGroup;
+    system("clear");
+    cout<<"To: "<<toGroup<<endl;
+    /*发送消息请求*/
+    Json* json = new Json();
+    json->appendInt("mode",MSGMODE_REDIS_USER_SHOWMSG);
+    json->appendCharPtr("fromUser",user_->getName());
+    json->appendCharPtr("toUser",toGroup);
+    handle_sendMsg(json);
+    delete json;
+    /*接受查询结果*/
+    session_->receive();
+    /*显示查询结果*/
+    vector<string> userMsgs; 
+    session_->getMsgNode()->getJson().getStrArr("msgs",userMsgs);
+    for(auto& um:userMsgs){
+        Json jsonUm(um);
+        if(1){
+            cout<<"["<<jsonUm.getCharPtr("time")<<"]";
+            cout<<"["<<jsonUm.getCharPtr("fromUser")<<"] ";
+            cout<<jsonUm.getCharPtr("msg")<<endl;
+        }
+    }
+    cout<<endl;
+    cout<<"1.发送消息"<<endl;
+    cout<<"q.退出"<<endl;
+    cout<<"请选择:";
+    char choice = 'q';
+    cin>>choice;
+    switch(choice){
+        case '1':
+            sendMsg(MSGMODE_REDIS_GROUP_SENDMSG);
+        case 'q':
+            break;
+    }
 }
 
