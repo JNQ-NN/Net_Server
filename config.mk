@@ -1,5 +1,5 @@
 #dir
-TARGET=Example_Project       #最终生成的可执行文件名
+TARGET=Net_Server            #最终生成的可执行文件名
 SUB_DIRS=tool                #子目录列表,会遍历子目录，依次调用子目录的Makefile
 SUB_DIRS+=net
 SUB_DIRS+=net_client

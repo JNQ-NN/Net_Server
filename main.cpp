@@ -17,6 +17,7 @@ using namespace std;
 
 log4cplus::Initializer initializer;
 
+
 int main(int args,char** argv){
     /* log4cplus config*/
     log4cplus::PropertyConfigurator::doConfigure(log4cplus_Conf_File);
@@ -27,7 +28,7 @@ int main(int args,char** argv){
         asio::io_context ioc;
         Server server(ioc,6666);
         server.start_accept();
-        ioc.run();
+        ioc.run();  
         //serverEcho();
     }else if(args>1 && !strcmp(argv[1],"client")){
         // cout<<"client"<<endl;
@@ -36,6 +37,4 @@ int main(int args,char** argv){
         Client client(ioc,"111.231.12.131",6666);
         ioc.run();
     }
-   
 }
-

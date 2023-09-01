@@ -16,11 +16,11 @@ ECHO:                          #遍历子目录
 	@echo $(SUB_DIRS)
 
 run:
-	@./bin/Example_Project
+	@./bin/$(TARGET)
 runServer:
-	@./bin/Example_Project server
+	@./bin/$(TARGET) server
 runClient:
-	@./bin/Example_Project client
+	@./bin/$(TARGET) client
 clean:
 	make clean -C $(OBJS_DIRS)
 	rm -rf $(BIN_DIR) 
