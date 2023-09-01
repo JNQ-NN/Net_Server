@@ -38,19 +38,23 @@ void Client::start_client(){
     while(1){
         system("clear");
         cout<<"###########"<<endl;
-        cout<<"1.发送消息"<<endl;
-        cout<<"2.查看用户消息"<<endl;
-        cout<<"3.查看群组消息"<<endl;
-        cout<<"4.查看所有消息"<<endl;
+        cout<<"1.发送用户消息"<<endl;
+        cout<<"2.发送群组消息"<<endl;
+        cout<<"3.查看用户消息"<<endl;
+        cout<<"4.查看群组消息"<<endl;
+        cout<<"5.查看所有消息"<<endl;
         cout<<"q.退出"<<endl;
         cout<<"请选择:";
         cin>>choice;
         switch (choice)
         {
         case '1':
-            sendMsg();
+            sendMsg(MSGMODE_REDIS_USER_SENDMSG);
             break;
         case '2':
+            sendMsg(MSGMODE_REDIS_GROUP_SENDMSG);
+            break;
+        case '3':
             showUserMSG();
             break;
         case 'q':
@@ -110,22 +114,29 @@ bool Client::verify_identity(){
 /*
 * @brief 发送消息
 */
-void Client::sendMsg(){
+void Client::sendMsg(int sendMode){
     system("clear");
     cout<<"你好,"<<user_->getName()<<endl;
-    char toUser[USER_NAME_LEN];
-    cout<<"请输入消息发送用户:";
-    cin>>toUser;
+    char toWhom[USER_NAME_LEN];
+    if(sendMode == MSGMODE_REDIS_USER_SENDMSG){
+        cout<<"请输入消息发送用户:";
+    }else if(sendMode == MSGMODE_REDIS_GROUP_SENDMSG){
+        cout<<"请输入消息发送群组:";
+    }
+    cin>>toWhom;
     cout<<"请输入发送的消息:";
     string msg;
     cin>>msg;
 
-    cout<<"testt:"<<user_->getName()<<endl;
     Json* json = new Json();
-    json->appendInt("mode",MSGMODE_REDIS_USER_SENDMSG);
+    json->appendInt("mode",sendMode);
     json->appendStr("time",TOOL::getCurTime());
     json->appendCharPtr("fromUser",user_->getName());
-    json->appendCharPtr("toUser",toUser);
+    if(sendMode == MSGMODE_REDIS_USER_SENDMSG){
+        json->appendCharPtr("toUser",toWhom);
+    }else if(sendMode == MSGMODE_REDIS_GROUP_SENDMSG){
+        json->appendCharPtr("toGroup",toWhom);
+    }
     json->appendStr("msg",msg);
     handle_sendMsg(json);
     delete json;
@@ -169,11 +180,10 @@ void Client::showUserMSG(){
     cin>>choice;
     switch(choice){
         case '1':
-            sendMsg();
+            sendMsg(MSGMODE_REDIS_USER_SENDMSG);
         case 'q':
             break;
     }
-    
 }
 
 /*

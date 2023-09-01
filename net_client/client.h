@@ -21,7 +21,7 @@ private:
     bool login();
     bool verify_identity();
     //void send(char* toUser,string msg);
-    void sendMsg();
+    void sendMsg(int sendMode);
     void showUserMSG();
     void handle_sendMsg(Json* json);
 };

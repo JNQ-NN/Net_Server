@@ -14,11 +14,14 @@ void SHandle::handle_receive(shared_ptr<SSession> session,char* msgRecv){
     case MSGMODE_MYSQL_QUERY_EXIST:    //查询是否存在
         threadPool_->commit(handle_queryExist,session,json->getCharPtr("queryCmd"));
         break;
-    case MSGMODE_REDIS_USER_SENDMSG:   //发送消息
-        threadPool_->commit(handle_redis_sendMsg,session,json);
+    case MSGMODE_REDIS_USER_SENDMSG:   //发送用户消息
+        threadPool_->commit(handle_redis_sendUserMsg,session,json);
         break;
     case MSGMODE_REDIS_USER_SHOWMSG:   //显示用户沟通的消息
         threadPool_->commit(handle_redis_showUserMsg,session,json);
+        break;
+    case MSGMODE_REDIS_GROUP_SENDMSG:  //显示用户沟通的消息
+        threadPool_->commit(handle_redis_sendGroupMsg,session,json);
         break;
     default:
         break;
@@ -43,8 +46,8 @@ void SHandle::handle_queryExist(shared_ptr<SSession> session,const char* queryCm
     delete json;
 }
 
-void SHandle::handle_redis_sendMsg(shared_ptr<SSession> session,shared_ptr<Json> json){
-    RedisMSG::sendMessage(json->getCharPtr("fromUser"),json->getCharPtr("toUser"),json->serialization());
+void SHandle::handle_redis_sendUserMsg(shared_ptr<SSession> session,shared_ptr<Json> json){
+    RedisMSG::sendUserMessage(json->getCharPtr("fromUser"),json->getCharPtr("toUser"),json->serialization());
 }
 
 void SHandle::handle_redis_showUserMsg(shared_ptr<SSession> session,shared_ptr<Json> json){
@@ -57,3 +60,8 @@ void SHandle::handle_redis_showUserMsg(shared_ptr<SSession> session,shared_ptr<J
     session->send(const_cast<char*>(msg.c_str()),msg.length());
     delete msgJson;
 }
+
+void SHandle::handle_redis_sendGroupMsg(shared_ptr<SSession> session,shared_ptr<Json> json){
+    RedisMSG::sendGroupMessage(json->getCharPtr("fromUser"),json->getCharPtr("toGroup"),json->serialization());
+}
+

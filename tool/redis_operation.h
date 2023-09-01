@@ -14,8 +14,9 @@ using namespace sw::redis;
 
 namespace RedisMSG{
     void checkRedisConnection();
-    void sendMessage(const char* fromUser,const char* toUser,const char* msg);
+    void sendUserMessage(const char* fromUser,const char* toUser,const char* msg);
     void getUserMessage(const char* fromUser,vector<string>& msgs);
+    void sendGroupMessage(const char* fromUser,const char* toGroup,const char* msg);
 };
 
 #endif

@@ -15,15 +15,6 @@ using namespace std;
 // #include "net_client/include/clientEchoSync.h"
 // #include "net_server/include/serverEchoAsync.h"
 
-void test(){
-    char arr[] = "test";
-    const char* cc = "test";
-    char* cp = arr;
-    cout<<strcmp(arr,"??")<<endl;;
-    cout<<strcmp(cc,cc)<<endl;;
-
-}
-
 log4cplus::Initializer initializer;
 
 int main(int args,char** argv){
@@ -32,7 +23,6 @@ int main(int args,char** argv){
     Log log;
     RedisMSG::checkRedisConnection();
 
-    test();
     if(args>1 && !strcmp(argv[1],"server")){
         asio::io_context ioc;
         Server server(ioc,6666);

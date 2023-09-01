@@ -23,10 +23,9 @@ void RedisMSG::checkRedisConnection(){
             std::cerr << "Error: " << e.what() << std::endl;
         }
     }
-    
 }
 
-void RedisMSG::sendMessage(const char* fromUser,const char* toUser,const char* msg){
+void RedisMSG::sendUserMessage(const char* fromUser,const char* toUser,const char* msg){
     string msgMode = "User:";
     redis.lpush(msgMode+fromUser,msg);
     redis.lpush(msgMode+toUser,msg);
@@ -37,4 +36,9 @@ void RedisMSG::getUserMessage(const char* fromUser,vector<string>&msgs){
     string msgKey = msgMode + fromUser;
     // auto len = redis.llen(msgKey);
     redis.lrange(msgKey, 0, -1, std::back_inserter(msgs));
+}
+
+void RedisMSG::sendGroupMessage(const char* fromUser,const char* toGroup,const char* msg){
+    string msgMode = "Group:";
+    redis.lpush(msgMode+toGroup,msg);
 }

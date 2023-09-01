@@ -76,4 +76,3 @@ string MSG::packing(char* msgBody){
 string MSG::packing(Json* json){
     return packing(json->serialization());
 }
-

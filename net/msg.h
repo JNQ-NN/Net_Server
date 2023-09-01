@@ -8,10 +8,12 @@ using namespace std;
 
 #define MSGHEAD_LEN  10 //消息头长度 10[MSGNODE_LEN]
 
-#define MSGMODE_MYSQL_QUERY_EXIST   1
-#define MSGMODE_MYSQL_QUERY_ALL     2
-#define MSGMODE_REDIS_USER_SENDMSG  11
-#define MSGMODE_REDIS_USER_SHOWMSG   12
+#define MSGMODE_MYSQL_QUERY_EXIST   1   //查询条件下，是否存在
+#define MSGMODE_MYSQL_QUERY_ALL     2   //查询条件下，所有信息并返回
+#define MSGMODE_REDIS_USER_SENDMSG  11  //发送用户消息
+#define MSGMODE_REDIS_USER_SHOWMSG  12  //查询和指定用户消息
+#define MSGMODE_REDIS_GROUP_SENDMSG 13  //发送群组消息
+#define MSGMODE_REDIS_GROUP_SHOWMSG 14  //查询和指定群组消息
 
 /*
 * @brief 消息体
