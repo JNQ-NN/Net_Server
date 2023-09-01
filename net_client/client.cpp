@@ -206,9 +206,9 @@ void Client::showGroupMSG(){
     cout<<"To: "<<toGroup<<endl;
     /*发送消息请求*/
     Json* json = new Json();
-    json->appendInt("mode",MSGMODE_REDIS_USER_SHOWMSG);
+    json->appendInt("mode",MSGMODE_REDIS_GROUP_SHOWMSG);
     json->appendCharPtr("fromUser",user_->getName());
-    json->appendCharPtr("toUser",toGroup);
+    json->appendCharPtr("toGroup",toGroup);
     handle_sendMsg(json);
     delete json;
     /*接受查询结果*/

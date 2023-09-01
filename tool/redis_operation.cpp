@@ -42,3 +42,13 @@ void RedisMSG::sendGroupMessage(const char* fromUser,const char* toGroup,const c
     string msgMode = "Group:";
     redis.lpush(msgMode+toGroup,msg);
 }
+
+void RedisMSG::getGroupMessage(const char* toGroup,vector<string>&msgs){
+    string msgMode = "Group:";
+    string msgKey = msgMode + toGroup;
+    // auto len = redis.llen(msgKey);
+    redis.lrange(msgKey, 0, -1, std::back_inserter(msgs));
+    for(auto& v:msgs){
+        cout<<v<<endl;
+    }
+}

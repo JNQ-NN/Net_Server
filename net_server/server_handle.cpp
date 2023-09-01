@@ -20,8 +20,11 @@ void SHandle::handle_receive(shared_ptr<SSession> session,char* msgRecv){
     case MSGMODE_REDIS_USER_SHOWMSG:   //显示用户沟通的消息
         threadPool_->commit(handle_redis_showUserMsg,session,json);
         break;
-    case MSGMODE_REDIS_GROUP_SENDMSG:  //显示用户沟通的消息
+    case MSGMODE_REDIS_GROUP_SENDMSG:  //发送群组消息
         threadPool_->commit(handle_redis_sendGroupMsg,session,json);
+        break;
+    case MSGMODE_REDIS_GROUP_SHOWMSG:  //发送群组消息
+        threadPool_->commit(handle_redis_showGroupMsg,session,json);
         break;
     default:
         break;
@@ -65,3 +68,13 @@ void SHandle::handle_redis_sendGroupMsg(shared_ptr<SSession> session,shared_ptr<
     RedisMSG::sendGroupMessage(json->getCharPtr("fromUser"),json->getCharPtr("toGroup"),json->serialization());
 }
 
+void SHandle::handle_redis_showGroupMsg(shared_ptr<SSession> session,shared_ptr<Json> json){
+    vector<string> msgs;
+    RedisMSG::getGroupMessage(json->getCharPtr("toGroup"),msgs);
+    Json* msgJson = new Json();
+    msgJson->appendInt("mode",MSGMODE_REDIS_GROUP_SHOWMSG);
+    msgJson->appendArr("msgs",msgs);
+    string msg = MSG::packing(msgJson);
+    session->send(const_cast<char*>(msg.c_str()),msg.length());
+    delete msgJson;
+}

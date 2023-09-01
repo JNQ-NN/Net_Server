@@ -95,7 +95,6 @@ void SSession::handle_receiveMsgNode(const asio::error_code& error){
     }catch(std::exception& e){
         cerr<<e.what()<<"\n";
     }
-
 }
 
 void SSession::handle_send(const asio::error_code& error){

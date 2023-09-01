@@ -25,6 +25,8 @@ public:
     static void handle_redis_sendUserMsg(shared_ptr<SSession> session,shared_ptr<Json> json);
     static void handle_redis_showUserMsg(shared_ptr<SSession> session,shared_ptr<Json> json);
     static void handle_redis_sendGroupMsg(shared_ptr<SSession> session,shared_ptr<Json> json);
+    static void handle_redis_showGroupMsg(shared_ptr<SSession> session,shared_ptr<Json> json);
+
     static void handle_login();
     static void handle_sign();
 private:
