@@ -59,10 +59,7 @@ void Client::start_client(){
         default:
             break;
         }
-    }
-    
- 
-    
+    } 
 }
 
 /*
@@ -135,12 +132,12 @@ void Client::sendMsg(){
 }
 
 /*
-* 显示和指定用户的聊天记录 
+* @brief 显示和指定用户的聊天记录 
 */
 void Client::showUserMSG(){
     /*选择目标用户*/
     char toUser[USER_NAME_LEN];
-    cout<<"请输入目标用户:";
+    cout<<"请输入查看信息的目标用户:";
     cin>>toUser;
     system("clear");
     cout<<"To: "<<toUser<<endl;
@@ -164,9 +161,24 @@ void Client::showUserMSG(){
             cout<<jsonUm.getCharPtr("msg")<<endl;
         }
     }
-    this_thread::sleep_for(chrono::seconds(5));
+    cout<<endl;
+    cout<<"1.发送消息"<<endl;
+    cout<<"q.退出"<<endl;
+    cout<<"请选择:";
+    char choice = 'q';
+    cin>>choice;
+    switch(choice){
+        case '1':
+            sendMsg();
+        case 'q':
+            break;
+    }
+    
 }
 
+/*
+* @brief 将封装好的Json对象,封装成消息协议
+*/
 void Client::handle_sendMsg(Json* json){
     string msg = MSG::packing(json);
     session_->send(const_cast<char*>(msg.c_str()),msg.length());
