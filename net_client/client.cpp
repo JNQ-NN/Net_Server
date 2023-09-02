@@ -41,6 +41,7 @@ void Client::start_client(){
     while(1){
         system("clear");
         cout<<"###########"<<endl;
+        cout<<"User:"<<user_->getName()<<endl;
         cout<<"1.发送用户消息"<<endl;
         cout<<"2.发送群组消息"<<endl;
         cout<<"3.查看用户消息"<<endl;
@@ -95,7 +96,7 @@ bool Client::login(){
 bool Client::sign(){
 //1.验证注册用户是否在Reids User存在
 //2.若存在，注册失败
-//3.若不存在，短信验证，存储至Mysql，再同步至Redis
+//3.若不存在，存储至Mysql，再同步至Redis
 
     system("clear");
     while(1){
@@ -108,7 +109,6 @@ bool Client::sign(){
         }    
     }
     return true;
-
 }
 
 /*
@@ -155,7 +155,35 @@ bool Client::sign_verify_identity(){
     delete json;
     session_->receive();
     auto queryRes = session_->getMsgNode()->getJson().getBool("queryRes");
-    return !queryRes;
+    if( queryRes ){ 
+        return false; 
+    }
+    cout<<"请输入密码:";
+    cin>>pwd;
+
+    stringstream appendCmd;
+    appendCmd<<"insert into user (name,pwd,identity) values";
+    appendCmd<<"(\""<<name<<"\",";
+    appendCmd<<"\""<<pwd<<"\",";
+    appendCmd<<"\""<<1<<"\")";    //identity 1
+    Json* userJson = new Json();
+    userJson->appendInt("mode",MSGMODE_MYSQL_USER_APPEND);
+    userJson->appendCharPtr("name",name);
+    userJson->appendCharPtr("appendCmd",appendCmd.str().c_str());
+    handle_sendMsg(userJson);
+    delete userJson;
+    session_->receive();
+    auto appendRes = session_->getMsgNode()->getJson().getBool("appendRes");
+    if(!appendRes){
+        return false;
+    }
+
+    this->user_->setName(name);
+    return true;
+    
+    // return !queryRes;
+    
+
 }
 
 /*

@@ -19,6 +19,7 @@ public:
                          const char* userName="root",const char* userPwd="123456789",
                          const char* userDatabase="netDatabase",unsigned int port=3306);
     MYSQL_RES* mysqlQuery(const char* queryCmd);
+    MYSQL_RES* mysqlAppend(const char* appendCmd);
     //vector<string> mysqlQueryV(const char* queryCmd);
     
 private:

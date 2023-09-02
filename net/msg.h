@@ -11,6 +11,7 @@ using namespace std;
 /* Mysql */
 #define MSGMODE_MYSQL_QUERY_EXIST   1   //查询条件下，是否存在
 #define MSGMODE_MYSQL_QUERY_ALL     2   //查询条件下，所有信息并返回
+#define MSGMODE_MYSQL_USER_APPEND   3   //添加用户
 /* Redis */
 #define MSGMODE_REDIS_QUERY_EXIST   11  //查询条件下，是否存在
 #define MSGMODE_REDIS_USER_SENDMSG  12  //发送用户消息

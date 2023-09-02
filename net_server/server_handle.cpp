@@ -17,6 +17,9 @@ void SHandle::handle_receive(shared_ptr<SSession> session,char* msgRecv){
     case MSGMODE_REDIS_QUERY_EXIST:    //Redis查询是否存在
         threadPool_->commit(handle_redisQueryExist,session,json);
         break;
+    case MSGMODE_MYSQL_USER_APPEND:    //MYSQL添加用户
+        threadPool_->commit(handle_mysql_appendUser,session,json);
+        break;
     case MSGMODE_REDIS_USER_SENDMSG:   //发送用户消息
         threadPool_->commit(handle_redis_sendUserMsg,session,json);
         break;
@@ -70,6 +73,21 @@ void SHandle::handle_redisQueryExist(shared_ptr<SSession> session,shared_ptr<Jso
     delete queryJson;
 }
 
+void SHandle::handle_mysql_appendUser(shared_ptr<SSession> session,shared_ptr<Json> json){
+    Mysql* ms = new Mysql();
+    ms->mysqlConnection();
+    MYSQL_RES* appendRes = nullptr;
+    appendRes = ms->mysqlAppend(json->getCharPtr("appendCmd"));
+    Json* appendJson = new Json();
+    appendJson->appendInt("mode",MSGMODE_MYSQL_QUERY_EXIST);
+    appendJson->appendBool("appendRes",!appendRes);
+    string msg = MSG::packing(appendJson);
+    session->send(const_cast<char*>(msg.c_str()),msg.length());
+    mysql_free_result(appendRes);
+    delete appendJson;
+    RedisMSG::appendSet("User",json->getCharPtr("name"));
+    
+}
 
 void SHandle::handle_redis_sendUserMsg(shared_ptr<SSession> session,shared_ptr<Json> json){
     RedisMSG::sendUserMessage(json->getCharPtr("fromUser"),json->getCharPtr("toUser"),json->serialization());

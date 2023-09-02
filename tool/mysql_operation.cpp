@@ -54,6 +54,19 @@ MYSQL_RES* Mysql::mysqlQuery(const char* queryCmd){
     return res_;
 }
 
+MYSQL_RES* Mysql::mysqlAppend(const char* appendCmd){
+    freeRes();
+    mysql_query(mysql_,appendCmd);  //操作指令都用mysql_query
+    
+    if(mysql_errno(mysql_)!=0){
+        cout<<"错误编码:"<<mysql_errno(mysql_)<<endl;
+        cout<<"错误信息:"<<mysql_error(mysql_)<<endl;
+    }
+    return res_;
+}
+
+
+
 // vector<string> Mysql::mysqlQueryV(const char* queryCmd){
 //     MYSQL_RES* queryRes = nullptr;
 //     vector<string> queryResV;
