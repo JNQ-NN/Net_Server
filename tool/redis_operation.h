@@ -18,6 +18,9 @@ namespace RedisMSG{
     void getUserMessage(const char* fromUser,vector<string>& msgs);
     void sendGroupMessage(const char* fromUser,const char* toGroup,const char* msg);
     void getGroupMessage(const char* toGroup,vector<string>&msgs);
+
+    void appendList(const char* listName,string listContent);
+    void appendSet(const char* setName,string setContent);
 };
 
 #endif

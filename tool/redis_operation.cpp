@@ -52,3 +52,11 @@ void RedisMSG::getGroupMessage(const char* toGroup,vector<string>&msgs){
         cout<<v<<endl;
     }
 }
+
+void RedisMSG::appendList(const char* listName,string listContent){
+    redis.lpush(listName,listContent);
+}
+
+void RedisMSG::appendSet(const char* listName,string listContent){
+    redis.sadd(listName,listContent);
+}

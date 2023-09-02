@@ -48,3 +48,9 @@
 问题：在库的路径更新.so时，可能存在error while loading shared libraries: libredis++.so.1: cannot open shared object file: No such file or directory
 问题：虽然系统说找不到文件，但实际路径下雀实有相应.so
 解决：ldconfig更新系统的动态链接库缓存
+
+问题：vscode实在上传不到git远程仓库，就代码手动上传
+解决：git remote -v 查看有记录的远程仓库
+解决：git push 远程仓库 分支
+
+问题：git连接不到远程仓库，应查看是SSH还是HTTP
