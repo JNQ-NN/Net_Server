@@ -60,3 +60,7 @@ void RedisMSG::appendList(const char* listName,string listContent){
 void RedisMSG::appendSet(const char* listName,string listContent){
     redis.sadd(listName,listContent);
 }
+
+bool RedisMSG::queryExistSetElement(const char* setName,const char* setContent){
+    return redis.sismember(setName,setContent);
+}

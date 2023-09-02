@@ -11,8 +11,11 @@ void SHandle::handle_receive(shared_ptr<SSession> session,char* msgRecv){
     cout<<"receive！"<<endl;
     switch (json->getInt("mode"))
     {
-    case MSGMODE_MYSQL_QUERY_EXIST:    //查询是否存在
-        threadPool_->commit(handle_queryExist,session,json->getCharPtr("queryCmd"));
+    case MSGMODE_MYSQL_QUERY_EXIST:    //Mysql查询是否存在
+        threadPool_->commit(handle_mysqlQueryExist,session,json->getCharPtr("queryCmd"));
+        break;
+    case MSGMODE_REDIS_QUERY_EXIST:    //Redis查询是否存在
+        threadPool_->commit(handle_redisQueryExist,session,json);
         break;
     case MSGMODE_REDIS_USER_SENDMSG:   //发送用户消息
         threadPool_->commit(handle_redis_sendUserMsg,session,json);
@@ -34,7 +37,7 @@ void SHandle::handle_receive(shared_ptr<SSession> session,char* msgRecv){
 /*
 * @brief 查询，是否存在
 */
-void SHandle::handle_queryExist(shared_ptr<SSession> session,const char* queryCmd){
+void SHandle::handle_mysqlQueryExist(shared_ptr<SSession> session,const char* queryCmd){
     Mysql* ms = new Mysql();
     ms->mysqlConnection();
     MYSQL_RES* queryRes = nullptr;
@@ -48,6 +51,25 @@ void SHandle::handle_queryExist(shared_ptr<SSession> session,const char* queryCm
     mysql_free_result(queryRes);
     delete json;
 }
+
+void SHandle::handle_redisQueryExist(shared_ptr<SSession> session,shared_ptr<Json> json){
+    bool isExist = false;
+    switch(json->getInt("REDIS_TYPE")){
+        case REDIS_SET:
+            isExist = RedisMSG::queryExistSetElement(json->getCharPtr("key"),json->getCharPtr("value"));
+            break;
+        default:
+            break;
+    }
+    
+    Json* queryJson = new Json();
+    queryJson->appendInt("mode",MSGMODE_REDIS_QUERY_EXIST);
+    queryJson->appendBool("queryRes",isExist);
+    string msg = MSG::packing(queryJson);
+    session->send(const_cast<char*>(msg.c_str()),msg.length());
+    delete queryJson;
+}
+
 
 void SHandle::handle_redis_sendUserMsg(shared_ptr<SSession> session,shared_ptr<Json> json){
     RedisMSG::sendUserMessage(json->getCharPtr("fromUser"),json->getCharPtr("toUser"),json->serialization());

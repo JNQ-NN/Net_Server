@@ -9,9 +9,12 @@ void Common::mysqlSyncRedis(){
     MYSQL_ROW row;
     ms->mysqlConnection();
     
+    /*用户同步*/
     queryRes = ms->mysqlQuery("select * from user;");
     while(row = mysql_fetch_row(queryRes)){
         RedisMSG::appendSet("User",row[1]);
     }
-    cout<<"mysql-Sync-Redis..."<<endl;
+
+    cout<<"mysql-Sync-Redis"<<endl;
+    mainLog_INFO("mysql-Sync-Redis");
 }

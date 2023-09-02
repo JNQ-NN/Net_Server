@@ -28,6 +28,9 @@ void Client::start_client(){
     case '1':
         login();
         break;
+    case '2':
+        sign();
+        break;
     case 'q':
         std::exit(0);
         break;
@@ -75,7 +78,7 @@ void Client::start_client(){
 bool Client::login(){
     system("clear");
     while(1){
-        if(verify_identity()){
+        if(login_verify_identity()){
             cout<<"登录成功"<<endl;
             break;
         }else{
@@ -85,10 +88,33 @@ bool Client::login(){
     }
     return true;
 }
+
 /*
-* @brief 身份验证
+* @brief 注册
 */
-bool Client::verify_identity(){
+bool Client::sign(){
+//1.验证注册用户是否在Reids User存在
+//2.若存在，注册失败
+//3.若不存在，短信验证，存储至Mysql，再同步至Redis
+
+    system("clear");
+    while(1){
+        if(sign_verify_identity()){
+            cout<<"注册成功"<<endl;
+            break;
+        }else{
+            system("clear");
+            cout<<"账户已存在，请重新输入"<<endl;
+        }    
+    }
+    return true;
+
+}
+
+/*
+* @brief 登录身份验证
+*/
+bool Client::login_verify_identity(){
     char name[USER_NAME_LEN];
     char pwd [USER_PWD_LEN];
     cout<<"请输入用户名:";
@@ -112,6 +138,24 @@ bool Client::verify_identity(){
     user_->setName(name);
     cout<<user_->getName()<<endl;
     return queryRes;
+}
+
+bool Client::sign_verify_identity(){
+    char name[USER_NAME_LEN];
+    char pwd [USER_PWD_LEN];
+    cout<<"请输入用户名:";
+    cin>>name;
+
+    Json* json = new Json();
+    json->appendInt("mode",MSGMODE_REDIS_QUERY_EXIST);
+    json->appendInt("REDIS_TYPE",REDIS_SET);
+    json->appendCharPtr("key","User");
+    json->appendCharPtr("value",name);
+    handle_sendMsg(json);
+    delete json;
+    session_->receive();
+    auto queryRes = session_->getMsgNode()->getJson().getBool("queryRes");
+    return !queryRes;
 }
 
 /*
@@ -184,6 +228,7 @@ void Client::showUserMSG(){
     switch(choice){
         case '1':
             sendMsg(MSGMODE_REDIS_USER_SENDMSG);
+            break;
         case 'q':
             break;
     }

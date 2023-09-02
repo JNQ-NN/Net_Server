@@ -12,6 +12,13 @@ using namespace sw::redis;
 #include "json.h"
 #include "tool.h"
 
+/* #define REDIS_TYPE */
+    #define REDIS_STRING 1
+    #define REDIS_SET    2
+    #define REDIS_LIST   3
+    #define REDIS_HASH   4
+    #define REDIS_ZSET   5
+
 namespace RedisMSG{
     void checkRedisConnection();
     void sendUserMessage(const char* fromUser,const char* toUser,const char* msg);
@@ -21,6 +28,7 @@ namespace RedisMSG{
 
     void appendList(const char* listName,string listContent);
     void appendSet(const char* setName,string setContent);
+    bool queryExistSetElement(const char* setName,const char* setContent);
 };
 
 #endif

@@ -21,7 +21,9 @@ public:
     SHandle(){}
     ~SHandle(){ delete threadPool_; }
     static void handle_receive(shared_ptr<SSession> session,char* msgRecv);  //此处加个协程，进行事件分发
-    static void handle_queryExist(shared_ptr<SSession> session,const char* queryCmd);
+    static void handle_mysqlQueryExist(shared_ptr<SSession> session,const char* queryCmd);
+    static void handle_redisQueryExist(shared_ptr<SSession> session,shared_ptr<Json> json);
+
     static void handle_redis_sendUserMsg(shared_ptr<SSession> session,shared_ptr<Json> json);
     static void handle_redis_showUserMsg(shared_ptr<SSession> session,shared_ptr<Json> json);
     static void handle_redis_sendGroupMsg(shared_ptr<SSession> session,shared_ptr<Json> json);

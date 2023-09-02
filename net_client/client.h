@@ -3,11 +3,13 @@
 
 #include "iostream"
 #include <asio.hpp>
+#include <thread>
 using namespace std;
 #include "client_session.h"
 #include "../net/msg.h"
 #include "../net/user.h"
-#include <thread>
+#include "../tool/redis_operation.h"
+
 
 class Client{
 public:
@@ -19,7 +21,9 @@ private:
     shared_ptr<CSession> session_;
     User* user_;
     bool login();
-    bool verify_identity();
+    bool sign();
+    bool login_verify_identity();
+    bool sign_verify_identity();
     //void send(char* toUser,string msg);
     void sendMsg(int sendMode);
     void showUserMSG();

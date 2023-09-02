@@ -1866,3 +1866,69 @@
 09/02/23 11:47:56 [INFO ][log.cpp:8] [Log] main log init
 09/02/23 11:50:54 [INFO ][log.cpp:7] [Log] #############
 09/02/23 11:50:54 [INFO ][log.cpp:8] [Log] main log init
+09/02/23 13:21:33 [INFO ][log.cpp:7] [Log] #############
+09/02/23 13:21:33 [INFO ][log.cpp:8] [Log] main log init
+09/02/23 13:21:33 [INFO ][common_operation.cpp:19] [mysqlSyncRedis] mysql-Sync-Redis
+09/02/23 13:21:36 [INFO ][log.cpp:7] [Log] #############
+09/02/23 13:21:36 [INFO ][log.cpp:8] [Log] main log init
+09/02/23 13:21:36 [INFO ][common_operation.cpp:19] [mysqlSyncRedis] mysql-Sync-Redis
+09/02/23 13:22:00 [INFO ][log.cpp:7] [Log] #############
+09/02/23 13:22:00 [INFO ][log.cpp:8] [Log] main log init
+09/02/23 13:22:00 [INFO ][common_operation.cpp:19] [mysqlSyncRedis] mysql-Sync-Redis
+09/02/23 13:58:40 [INFO ][log.cpp:7] [Log] #############
+09/02/23 13:58:40 [INFO ][log.cpp:8] [Log] main log init
+09/02/23 13:58:40 [INFO ][common_operation.cpp:19] [mysqlSyncRedis] mysql-Sync-Redis
+09/02/23 13:58:50 [INFO ][log.cpp:7] [Log] #############
+09/02/23 13:58:50 [INFO ][log.cpp:8] [Log] main log init
+09/02/23 13:58:50 [INFO ][common_operation.cpp:19] [mysqlSyncRedis] mysql-Sync-Redis
+09/02/23 13:58:53 [INFO ][log.cpp:7] [Log] #############
+09/02/23 13:58:53 [INFO ][log.cpp:8] [Log] main log init
+09/02/23 13:58:53 [INFO ][common_operation.cpp:19] [mysqlSyncRedis] mysql-Sync-Redis
+09/02/23 13:59:05 [INFO ][log.cpp:7] [Log] #############
+09/02/23 13:59:05 [INFO ][log.cpp:8] [Log] main log init
+09/02/23 13:59:05 [INFO ][common_operation.cpp:19] [mysqlSyncRedis] mysql-Sync-Redis
+09/02/23 14:00:02 [INFO ][log.cpp:7] [Log] #############
+09/02/23 14:00:02 [INFO ][log.cpp:8] [Log] main log init
+09/02/23 14:00:02 [INFO ][common_operation.cpp:19] [mysqlSyncRedis] mysql-Sync-Redis
+09/02/23 14:00:10 [INFO ][log.cpp:7] [Log] #############
+09/02/23 14:00:10 [INFO ][log.cpp:8] [Log] main log init
+09/02/23 14:00:10 [INFO ][common_operation.cpp:19] [mysqlSyncRedis] mysql-Sync-Redis
+09/02/23 14:00:13 [INFO ][log.cpp:7] [Log] #############
+09/02/23 14:00:13 [INFO ][log.cpp:8] [Log] main log init
+09/02/23 14:00:13 [INFO ][common_operation.cpp:19] [mysqlSyncRedis] mysql-Sync-Redis
+09/02/23 14:01:18 [INFO ][log.cpp:7] [Log] #############
+09/02/23 14:01:18 [INFO ][log.cpp:8] [Log] main log init
+09/02/23 14:01:18 [INFO ][common_operation.cpp:19] [mysqlSyncRedis] mysql-Sync-Redis
+09/02/23 14:01:22 [INFO ][log.cpp:7] [Log] #############
+09/02/23 14:01:22 [INFO ][log.cpp:8] [Log] main log init
+09/02/23 14:01:22 [INFO ][common_operation.cpp:19] [mysqlSyncRedis] mysql-Sync-Redis
+09/02/23 14:03:31 [INFO ][log.cpp:7] [Log] #############
+09/02/23 14:03:31 [INFO ][log.cpp:8] [Log] main log init
+09/02/23 14:03:31 [INFO ][common_operation.cpp:19] [mysqlSyncRedis] mysql-Sync-Redis
+09/02/23 14:03:35 [INFO ][log.cpp:7] [Log] #############
+09/02/23 14:03:35 [INFO ][log.cpp:8] [Log] main log init
+09/02/23 14:03:35 [INFO ][common_operation.cpp:19] [mysqlSyncRedis] mysql-Sync-Redis
+09/02/23 14:03:41 [INFO ][log.cpp:7] [Log] #############
+09/02/23 14:03:41 [INFO ][log.cpp:8] [Log] main log init
+09/02/23 14:03:41 [INFO ][common_operation.cpp:19] [mysqlSyncRedis] mysql-Sync-Redis
+09/02/23 14:05:12 [INFO ][log.cpp:7] [Log] #############
+09/02/23 14:05:12 [INFO ][log.cpp:8] [Log] main log init
+09/02/23 14:05:12 [INFO ][common_operation.cpp:19] [mysqlSyncRedis] mysql-Sync-Redis
+09/02/23 14:05:13 [INFO ][log.cpp:7] [Log] #############
+09/02/23 14:05:13 [INFO ][log.cpp:8] [Log] main log init
+09/02/23 14:05:13 [INFO ][common_operation.cpp:19] [mysqlSyncRedis] mysql-Sync-Redis
+09/02/23 14:06:25 [INFO ][log.cpp:7] [Log] #############
+09/02/23 14:06:25 [INFO ][log.cpp:8] [Log] main log init
+09/02/23 14:06:25 [INFO ][common_operation.cpp:19] [mysqlSyncRedis] mysql-Sync-Redis
+09/02/23 14:06:27 [INFO ][log.cpp:7] [Log] #############
+09/02/23 14:06:27 [INFO ][log.cpp:8] [Log] main log init
+09/02/23 14:06:27 [INFO ][common_operation.cpp:19] [mysqlSyncRedis] mysql-Sync-Redis
+09/02/23 14:08:38 [INFO ][log.cpp:7] [Log] #############
+09/02/23 14:08:38 [INFO ][log.cpp:8] [Log] main log init
+09/02/23 14:08:38 [INFO ][common_operation.cpp:19] [mysqlSyncRedis] mysql-Sync-Redis
+09/02/23 14:08:41 [INFO ][log.cpp:7] [Log] #############
+09/02/23 14:08:41 [INFO ][log.cpp:8] [Log] main log init
+09/02/23 14:08:41 [INFO ][common_operation.cpp:19] [mysqlSyncRedis] mysql-Sync-Redis
+09/02/23 14:09:02 [INFO ][log.cpp:7] [Log] #############
+09/02/23 14:09:02 [INFO ][log.cpp:8] [Log] main log init
+09/02/23 14:09:02 [INFO ][common_operation.cpp:19] [mysqlSyncRedis] mysql-Sync-Redis
