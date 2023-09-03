@@ -12,13 +12,11 @@ using namespace std;
 #include "tool/redis_operation.h" 
 #include "tool/common_operation.h"
 #include <stdlib.h>
-
-// #include "net_client/include/clientEchoSync.h"
-// #include "net_server/include/serverEchoAsync.h"
+#include "net_server_http/server_http.h"
 
 log4cplus::Initializer initializer;
 
-#define fun(x,y) x+y
+
 
 int main(int args,char** argv){
     /* log4cplus config*/
@@ -26,19 +24,20 @@ int main(int args,char** argv){
     Log log;
     RedisMSG::checkRedisConnection();
     Common::mysqlSyncRedis();
-    cout<<fun(10,20)<<endl;
 
     if(args>1 && !strcmp(argv[1],"server")){
         asio::io_context ioc;
         Server server(ioc,6666);
         server.start_accept();
         ioc.run();  
-        //serverEcho();
     }else if(args>1 && !strcmp(argv[1],"client")){
-        // cout<<"client"<<endl;
-        // clientEcho();
         asio::io_context ioc;
         Client client(ioc,"111.231.12.131",6666);
         ioc.run();
+    }else if(args>1 && !strcmp(argv[1],"serverHTTP")){
+        asio::io_context ioc;
+        ServerHTTP server(ioc,8888);
+        server.start_accept();
+        ioc.run();  
     }
 }

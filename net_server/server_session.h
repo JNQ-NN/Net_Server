@@ -1,6 +1,6 @@
 #ifndef __SERVER_SESSION_H__
 #define __SERVER_SESSION_H__
-#include "iostream"
+#include <iostream>
 #include <asio.hpp>
 #include <queue>
 using namespace std;
@@ -12,15 +12,14 @@ class SSession:public std::enable_shared_from_this<SSession>{
     typedef asio::ip::tcp::socket* socket_t;
 public:
     SSession(asio::io_context& ioc);
+    ~SSession();
     socket_t getSocket();
     void start_receive();
     void handle_receive(const asio::error_code& error);
     void handle_receiveMsgHead(const asio::error_code& error);
     void handle_receiveMsgNode(const asio::error_code& error);
-    
     void handle_send(const asio::error_code& error);
     void send(char* msg,size_t msgMaxLen);
-    ~SSession();
     
 private:
     socket_t socket_;

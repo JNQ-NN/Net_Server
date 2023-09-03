@@ -4,6 +4,8 @@ SUB_DIRS=tool                #子目录列表,会遍历子目录，依次调用�
 SUB_DIRS+=net
 SUB_DIRS+=net_client
 SUB_DIRS+=net_server
+SUB_DIRS+=net_server_http
+
 SUB_DIRS+=obj                #obj将.o文件编译成可执行文件
 OBJS_DIRS=obj                #存放生成的中间.o文件目录
 BIN_DIR=bin                  #存放可执行文件的目录

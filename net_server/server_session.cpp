@@ -46,6 +46,9 @@ void SSession::send(char* msg,size_t msgMaxLen){
     }
 }
 
+/*
+* @brief 已弃用，使用handle_receiveMsgHead & handle_receiveMsgBody
+*/
 void SSession::handle_receive(const asio::error_code& error){
     if(error){
         if(error.value() == 2) return; //对端关闭,调用Session的析构函数,释放掉建立的连接              

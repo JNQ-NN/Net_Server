@@ -9,6 +9,7 @@ acceptor_(ioc_,asio::ip::tcp::endpoint(asio::ip::tcp::v4(),port))
     cout<<"Server Start"<<endl;
     cout<<"local host: "<<acceptor_.local_endpoint().address().to_string()<<endl;
     cout<<"local port: "<<acceptor_.local_endpoint().port()<<endl;
+    mainLog_INFO("Server Start");
 }
 
 void Server::start_accept(){

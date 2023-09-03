@@ -7,7 +7,7 @@ using namespace std;
 #include "server_handle.h"
 
 /*
-* @brief 双工异步通信
+* @brief 提供自定协议服务，双工异步通信
 */
 class Server{
 public:
