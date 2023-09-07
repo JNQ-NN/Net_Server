@@ -2,7 +2,6 @@
 #define __LOG_H__
 #include <iomanip>
 #include <iostream>
-
 #include <log4cplus/logger.h>
 #include <log4cplus/loglevel.h>
 #include <log4cplus/appender.h>
@@ -11,9 +10,7 @@
 #include <log4cplus/fileappender.h>
 #include <log4cplus/loggingmacros.h>
 #include <log4cplus/consoleappender.h>
-
 using namespace std;
-
 #define log4cplus_Conf_File "./conf/log_conf"
 
 class Log{

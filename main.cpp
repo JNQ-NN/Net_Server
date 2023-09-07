@@ -17,6 +17,10 @@ using namespace std;
 log4cplus::Initializer initializer;
 
 
+void print(const asio::error_code& error,asio::steady_timer* timer,int* count){
+    timer->expires_at(timer->expires_at() + std::chrono::seconds(1));
+    cout<<1<<endl;
+}
 
 int main(int args,char** argv){
     /* log4cplus config*/
@@ -39,5 +43,14 @@ int main(int args,char** argv){
         ServerHTTP server(ioc,8888);
         server.start_accept();
         ioc.run();  
+    }else if(args>1 && !strcmp(argv[1],"test")){
+        asio::io_context ioc;
+        asio::steady_timer timer = asio::steady_timer(ioc,std::chrono::seconds(3));
+        int count = 0;
+        cout<<"1111"<<endl;
+        timer.async_wait(std::bind(&print,std::placeholders::_1,&timer,&count));
+        cout<<"2222"<<endl;
+        ioc.run();
+
     }
 }

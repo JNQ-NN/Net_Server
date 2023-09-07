@@ -24,7 +24,6 @@ void test(MYSQL* mysql,string s){
 bool Mysql::mysqlConnection(const char* hostName,
                             const char* userName,const char* userPwd,
                             const char* userDatabase,unsigned int port){
-    
     if(mysql_ == nullptr){
         cout<<"connection mysql nullplr"<<endl;
         return false;
@@ -64,8 +63,6 @@ MYSQL_RES* Mysql::mysqlAppend(const char* appendCmd){
     }
     return res_;
 }
-
-
 
 // vector<string> Mysql::mysqlQueryV(const char* queryCmd){
 //     MYSQL_RES* queryRes = nullptr;

@@ -23,6 +23,8 @@ runClient:
 	@./bin/$(TARGET) client
 runServerHTTP:
 	@./bin/$(TARGET) serverHTTP
+runTest:
+	@./bin/$(TARGET) test
 clean:
 	make clean -C $(OBJS_DIRS)
 	rm -rf $(BIN_DIR) 
