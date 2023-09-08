@@ -13,10 +13,11 @@ INCLUDE_DIR=
 LOG_DIRS=log                 #存放日志文件
 #complier
 CC=g++                       #g++编译器
-FLAG=-Wall -g -std=c++17
+FLAG=-Wall -g -std=c++20
 LIB = -L${ROOT_DIR}/lib      #添加LIB路径，系统默认路径为/usr/local/lib/..
                              #系统默认路径，可以通过修改/etc/local/lib添加路径
 LIB += -llog4cplus 
 LIB += -lmysqlclient 
 LIB += -lhiredis
 LIB += -lredis++
+LIB += -fcoroutines
