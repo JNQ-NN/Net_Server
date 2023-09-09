@@ -1,7 +1,8 @@
 #include "iostream"
-#include <asio.hpp>
-#include <vector>
+
 #include <stack>
+#include <vector>
+#include <asio.hpp>
 #include <coroutine>
 using namespace std;
 #include "tool/log.h"
@@ -19,6 +20,20 @@ log4cplus::Initializer initializer;
 
 /* 协程示例 */
 
+struct TestAwait{
+    bool await_ready(){
+        cout<<"await_ready"<<endl;
+        return false;
+    }
+    void await_resume(){
+        cout<<"await_resum"<<endl;
+    }
+    void await_suspend(coroutine_handle<> h){
+        cout<<"await_suspend"<<endl;
+        coroutine_handle<> handle = h;
+    }
+};
+
 struct TestCoroutine{
     struct TestPromise{
         TestCoroutine get_return_object(){
@@ -34,10 +49,11 @@ struct TestCoroutine{
 };
 
 TestCoroutine TestFun(){
-    cout<<"Hello"<<endl;
-    co_await std::suspend_always{};
-    cout<<"World"<<endl;
-    co_await std::suspend_never{};
+    // cout<<"Hello"<<endl;
+    // co_await std::suspend_always{};
+    // cout<<"World"<<endl;
+    // co_await std::suspend_never{};
+    co_await TestAwait();
 }
 
 void print(const asio::error_code& error,asio::steady_timer* timer,int* count){
@@ -75,7 +91,8 @@ int main(int args,char** argv){
         // timer.async_wait(std::bind(&print,std::placeholders::_1,&timer,&count));
         // cout<<"2222"<<endl;
         // ioc.run();
-        
+
+        //协程构成 promise + awaitable + handle
         TestCoroutine coro = TestFun();
         cout<<"calling resume"<<endl;
         coro.handle.resume();

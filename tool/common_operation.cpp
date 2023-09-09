@@ -11,7 +11,9 @@ void Common::mysqlSyncRedis(){
     
     /*用户同步*/
     queryRes = ms->mysqlQuery("select * from user;");
-    while(row = mysql_fetch_row(queryRes)){
+    while(true){
+        row = mysql_fetch_row(queryRes);
+        if(row == NULL) break;
         RedisMSG::appendSet("User",row[1]);
     }
 
